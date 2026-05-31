@@ -8,7 +8,7 @@
     <meta property="og:image" content="https://prssic.github.io/campanie_vara_ssic/placeholder_github.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-
+ 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Campanie Vară 2026 - SSIC">
     <meta name="twitter:description" content="Calendarul campaniei de promovare SSIC pentru vara 2026.">
@@ -20,7 +20,7 @@
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
+ 
         :root {
             --ssic-main: #1a0526;
             --ssic-accent: #f5ba42;
@@ -29,30 +29,30 @@
             
             --bg-base: #06010b;
             --modal-overlay: rgba(6, 1, 11, 0.6);
-
+ 
             --glass-bg: rgba(30, 8, 45, 0.55);
             --glass-border: rgba(255, 255, 255, 0.15);
             --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
             --glass-blur: 24px;
-
+ 
             --color-postare: #00d2ff;
             --color-reel: #ff0055;
             --color-story: #a855f7;
             --color-unknown: #475569;
-
+ 
             --resp-patru: #ff2a2a;         
             --resp-erica: #ff007f;         
             --resp-mihai: #3b82f6;         
             --resp-mihai-erica: #f5ba42;   
         }
-
+ 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: transparent; 
         }
-
+ 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: var(--text-main);
@@ -70,25 +70,25 @@
             background-color: var(--bg-base);
             animation: shiftGradient 25s ease-in-out infinite;
         }
-
+ 
         @keyframes shiftGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
+ 
         @keyframes floatIn {
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-
+ 
         #particlesCanvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             z-index: 0; 
         }
-
+ 
         /* LOGO FILIGRAN - ASCUNS PE MOBIL */
         .bg-logo {
             position: fixed;
@@ -103,16 +103,16 @@
             animation: spinLogoVertical 25s linear infinite;
             filter: drop-shadow(0 0 35px rgba(168, 85, 247, 0.6)) drop-shadow(0 0 60px rgba(245, 186, 66, 0.3));
         }
-
+ 
         @media (max-width: 768px) {
             .bg-logo { display: none !important; }
         }
-
+ 
         @keyframes spinLogoVertical {
             0% { transform: rotateY(0deg); }
             100% { transform: rotateY(360deg); }
         }
-
+ 
         /* PRELOADER */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -125,20 +125,20 @@
             width: 120px; height: 120px; object-fit: contain;
             animation: logoPulse 2s infinite ease-in-out;
         }
-
+ 
         @keyframes logoPulse {
             0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(168, 85, 247, 0)); }
             50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)); }
             100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(168, 85, 247, 0)); }
         }
-
+ 
         .container {
             width: 100%;
             max-width: 1100px;
             position: relative;
             z-index: 1;
         }
-
+ 
         /* BUTON PROIECT NOU */
         .floating-controls {
             position: absolute;
@@ -146,7 +146,7 @@
             z-index: 10;
             animation: floatIn 0.8s ease-out forwards;
         }
-
+ 
         .action-btn {
             background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(168, 85, 247, 0.1));
             border: 1px solid rgba(168, 85, 247, 0.4);
@@ -163,7 +163,7 @@
             outline: none;
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
-
+ 
         .action-btn:hover {
             border-color: var(--ssic-accent);
             background: linear-gradient(135deg, rgba(245, 186, 66, 0.25), rgba(168, 85, 247, 0.15));
@@ -172,11 +172,11 @@
         }
         
         .action-btn:active { transform: scale(0.95); }
-
+ 
         @media (max-width: 680px) {
             .floating-controls { position: relative; width: 100%; display: flex; justify-content: center; margin-bottom: 25px; top: 0; right: 0; }
         }
-
+ 
         header {
             position: relative; 
             z-index: 20; 
@@ -184,7 +184,7 @@
             margin-bottom: 50px; margin-top: 10px; width: 100%; text-align: center; flex-wrap: wrap;
             animation: floatIn 0.6s ease-out forwards;
         }
-
+ 
         header h1 { 
             font-size: 3.2rem; 
             font-weight: 800; 
@@ -205,7 +205,7 @@
             z-index: 21; 
         }
         header:hover .header-logo:not(.fleeing) { transform: scale(1.1) rotate(5deg); }
-
+ 
         /* EASTER EGG LOGO FLEEING */
         .header-logo.fleeing {
             position: fixed !important;
@@ -213,13 +213,13 @@
             pointer-events: auto;
             transition: left 0.3s ease-out, top 0.3s ease-out, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
         }
-
+ 
         @media (max-width: 650px) {
             header h1 { font-size: 2.2rem; }
             .header-logo { width: 75px; height: 75px; } 
             header { gap: 15px; margin-bottom: 30px; }
         }
-
+ 
         /* GLASS PANELS */
         .glass-panel {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)), var(--glass-bg);
@@ -237,7 +237,7 @@
             opacity: 0;
             transition: padding 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
+ 
         .glass-panel::before {
             content: ''; position: absolute;
             top: var(--spot-y, 50%); left: var(--spot-x, 50%);
@@ -246,13 +246,13 @@
             transform: translate(-50%, -50%); pointer-events: none; z-index: 0; opacity: 0; transition: opacity 0.5s ease; border-radius: 50%;
         }
         .glass-panel:hover::before { opacity: 1; }
-
+ 
         .glass-panel:nth-child(1) { animation-delay: 0.1s; }
         .glass-panel:nth-child(2) { animation-delay: 0.2s; }
         .glass-panel:nth-child(3) { animation-delay: 0.3s; }
         .glass-panel:nth-child(4) { animation-delay: 0.4s; }
         .glass-panel:nth-child(5) { animation-delay: 0.5s; }
-
+ 
         /* LEGENDĂ INTERACTIVĂ */
         .legend-container-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; position: relative; z-index: 2; }
         @media (max-width: 768px) { .legend-container-inner { flex-direction: column; gap: 20px; } }
@@ -270,7 +270,7 @@
             cursor: pointer; user-select: none;
         }
         .legend-pill:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
-
+ 
         .legend-pill.active-filter {
             background: rgba(245, 186, 66, 0.15); border-color: var(--ssic-accent);
             box-shadow: 0 0 15px rgba(245, 186, 66, 0.4), inset 0 1px 2px rgba(255,255,255,0.3);
@@ -287,13 +287,13 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: var(--ssic-accent);
             text-shadow: 0 2px 10px rgba(245, 186, 66, 0.3); position: relative; z-index: 2;
         }
-
+ 
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
-
+ 
         /* NOU UI MOBIL: INTERACTIVE ACCORDION ALINIAT PERFECT */
         @media (max-width: 768px) {
             .month-header {
@@ -318,7 +318,7 @@
                 transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease, padding 0.4s ease;
                 max-height: 2500px; opacity: 1; overflow: hidden; transform-origin: top;
             }
-
+ 
             .glass-panel.collapsed .calendar-grid {
                 max-height: 0; opacity: 0; padding-top: 0; pointer-events: none;
             }
@@ -326,7 +326,7 @@
             .glass-panel.collapsed { padding-bottom: 10px; }
             .glass-panel::before { display: none !important; }
         }
-
+ 
         /* CARDURI CALENDAR DESKTOP */
         .event-card {
             position: relative; border-radius: 16px; padding: 20px; min-height: 130px;
@@ -338,7 +338,7 @@
             cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             z-index: 2; overflow: hidden; 
         }
-
+ 
         .event-card.dimmed-card {
             opacity: 0.15; filter: grayscale(100%) blur(1px); transform: scale(0.96);
             pointer-events: none; box-shadow: none; border-color: rgba(255,255,255,0.05);
@@ -349,17 +349,17 @@
             background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
             transform: skewX(-25deg); transition: left 0.6s ease; z-index: 1; pointer-events: none;
         }
-
+ 
         .event-card:hover:not(.dimmed-card)::after { left: 150%; }
-
+ 
         .event-card:hover:not(.dimmed-card) { 
             transform: translateY(-6px) scale(1.02); 
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(168, 85, 247, 0.25);
             border-color: rgba(255, 255, 255, 0.25);
         }
-
+ 
         .event-card:active:not(.dimmed-card) { transform: scale(0.96); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-
+ 
         /* FIX ALINIERE ȘI UMBRE CASETE PE MOBIL */
         @media (max-width: 768px) {
             .event-card {
@@ -368,26 +368,26 @@
                 transform: none !important; 
                 border: 1px solid rgba(255, 255, 255, 0.12) !important; 
             }
-
+ 
             .event-card:hover:not(.dimmed-card) {
                 transform: none !important;
                 box-shadow: none !important;
                 border-color: rgba(255, 255, 255, 0.25) !important;
             }
-
+ 
             .event-card:active:not(.dimmed-card) {
                 transform: scale(0.98) !important; 
                 box-shadow: none !important;
             }
-
+ 
             .event-card.dimmed-card {
                 transform: none !important; 
                 opacity: 0.25; 
             }
         }
-
+ 
         .card-top, .event-title, .card-bottom { position: relative; z-index: 2; } 
-
+ 
         .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
         .date-badge { font-size: 1.2rem; font-weight: 800; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
         .event-title { font-size: 1rem; font-weight: 700; line-height: 1.4; margin-bottom: 16px; flex-grow: 1; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
@@ -396,7 +396,7 @@
             display: flex; justify-content: space-between; align-items: center; 
             padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1); 
         }
-
+ 
         .type-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
         
         /* STATUS BADGES - STILIZĂRI PENTRU GOOGLE SHEETS */
@@ -407,10 +407,11 @@
         }
         
         .status-inceput { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .status-neinceput { background: rgba(100, 116, 139, 0.15); color: #94a3b8; border: 1px solid rgba(100, 116, 139, 0.3); }
         .status-in-desfasurare { background: rgba(245, 186, 66, 0.15); color: var(--ssic-accent); border: 1px solid rgba(245, 186, 66, 0.3); }
         .status-trimis { background: rgba(249, 115, 22, 0.15); color: #f97316; border: 1px solid rgba(249, 115, 22, 0.3); }
         .status-publicat { background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
-
+ 
         /* DESCRIERE TASK ÎN MODAL */
         .modal-task-desc {
             width: 100%; margin-bottom: 18px;
@@ -423,22 +424,22 @@
         }
         .status-suspendat { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
         .status-pauza { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
-
+ 
         .resp-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 2px solid rgba(255,255,255,0.9); }
         .dot-patru { background-color: var(--resp-patru); box-shadow: 0 0 12px rgba(255, 42, 42, 0.7); }
         .dot-erica { background-color: var(--resp-erica); box-shadow: 0 0 12px rgba(255, 0, 127, 0.7); }
         .dot-mihai { background-color: var(--resp-mihai); box-shadow: 0 0 12px rgba(59, 130, 246, 0.7); }
         .dot-mihai-erica { background-color: var(--resp-mihai-erica); box-shadow: 0 0 12px rgba(245, 186, 66, 0.7); }
-
+ 
         .card-postare { border-left: 4px solid var(--color-postare); } .card-postare .type-label { color: var(--color-postare); }
         .card-reel { border-left: 4px solid var(--color-reel); } .card-reel .type-label { color: var(--color-reel); }
         .card-story { border-left: 4px solid var(--color-story); } .card-story .type-label { color: var(--color-story); }
         .card-nespecificat { border-left: 4px solid var(--color-unknown); } .card-nespecificat .type-label { color: var(--text-sub); }
-
+ 
         .card-postare:hover:not(.dimmed-card) { border-color: var(--color-postare); }
         .card-reel:hover:not(.dimmed-card) { border-color: var(--color-reel); }
         .card-story:hover:not(.dimmed-card) { border-color: var(--color-story); }
-
+ 
         /* MODALE PREMIUM */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -476,7 +477,7 @@
         }
         .form-group textarea { resize: none; height: 85px; }
         .form-group input:focus, .form-group textarea:focus { border-color: var(--ssic-accent); background: rgba(255, 255, 255, 0.1); box-shadow: inset 0 2px 6px rgba(0,0,0,0.3), 0 0 10px rgba(245, 186, 66, 0.2); }
-
+ 
         .submit-btn {
             background: linear-gradient(135deg, var(--ssic-accent), #e0a331); border: none; color: #1a0526;
             padding: 14px 24px; font-size: 0.95rem; font-weight: 800; border-radius: 12px;
@@ -488,27 +489,27 @@
     </style>
 </head>
 <body>
-
+ 
 <canvas id="particlesCanvas"></canvas>
-
+ 
 <div id="preloader">
     <div class="loader-content">
         <img src="logo_1.png" alt="" class="loader-logo" onerror="this.style.display='none'">
     </div>
 </div>
-
+ 
 <div class="bg-logo"></div>
-
+ 
 <div class="container">
     <div class="floating-controls">
         <button class="action-btn" onclick="openProposalModal()">💡 Idei noi SSIC</button>
     </div>
-
+ 
     <header>
         <img src="logo_2.png" alt="" class="header-logo" id="easterEggLogo" onerror="this.style.display='none'">
         <h1 id="easterEggTitle">Campanie Vară 2026</h1>
     </header>
-
+ 
     <div class="glass-panel">
         <div class="legend-container-inner">
             <div class="legend-block">
@@ -531,10 +532,10 @@
             </div>
         </div>
     </div>
-
+ 
     <div id="calendar-root"></div>
 </div>
-
+ 
 <div class="modal-overlay" id="taskModal" onclick="closeActiveModal('taskModal')">
     <div class="modal-box" onclick="event.stopPropagation()">
         <button class="close-btn" onclick="closeActiveModal('taskModal')">&times;</button>
@@ -553,7 +554,7 @@
         </form>
     </div>
 </div>
-
+ 
 <div class="modal-overlay" id="proposalModal" onclick="closeActiveModal('proposalModal')">
     <div class="modal-box" onclick="event.stopPropagation()">
         <button class="close-btn" onclick="closeActiveModal('proposalModal')">&times;</button>
@@ -572,11 +573,11 @@
         </form>
     </div>
 </div>
-
+ 
 <script>
     // URL-UL PENTRU CITIREA DATELOR - INTEGRAT ACUM!
     const SPREADSHEET_API_URL = 'https://script.google.com/macros/s/AKfycbwdayd0eU3iQBMW_7i91P71HBzj1K4Vp6Qpg2jS7ZdOa8IeHBWJeEQnFywmJGzCIm7Z/exec';
-
+ 
     const hidePreloader = () => {
         const preloader = document.getElementById('preloader');
         if (preloader) {
@@ -585,11 +586,11 @@
         }
     };
     window.addEventListener('load', () => { 
-        setTimeout(hidePreloader, 2800); 
+        setTimeout(hidePreloader, 800); 
         syncTasksWithSheet(); // Sincronizare la încărcare
     });
-    setTimeout(hidePreloader, 6000); 
-
+    setTimeout(hidePreloader, 3000); 
+ 
     // UX Acordeon Interactiv pe Mobil
     document.addEventListener('DOMContentLoaded', () => {
         if (window.innerWidth <= 768) {
@@ -607,14 +608,14 @@
             });
         }
     });
-
+ 
     let currentFilter = null;
     let currentPill = null;
-
+ 
     function toggleFilter(selector, pillElement) {
         const allCards = document.querySelectorAll('.event-card');
         const allPills = document.querySelectorAll('.legend-pill');
-
+ 
         if (currentFilter === selector) {
             allCards.forEach(card => card.classList.remove('dimmed-card'));
             allPills.forEach(pill => {
@@ -625,10 +626,10 @@
             currentPill = null;
             return;
         }
-
+ 
         currentFilter = selector;
         currentPill = pillElement;
-
+ 
         allPills.forEach(pill => {
             if (pill === pillElement) {
                 pill.classList.add('active-filter');
@@ -638,7 +639,7 @@
                 pill.classList.add('dimmed-filter');
             }
         });
-
+ 
         allCards.forEach(card => {
             let matches = false;
             if (selector.startsWith('.card-')) {
@@ -660,7 +661,7 @@
             }
         });
     }
-
+ 
     document.querySelectorAll('.dynamic-spotlight').forEach(panel => {
         panel.addEventListener('mousemove', e => {
             if (window.innerWidth <= 768) return; 
@@ -671,7 +672,7 @@
             panel.style.setProperty('--spot-y', `${y}px`);
         });
     });
-
+ 
     // SISTEM DE SINCRONIZARE COMPLETĂ DIN GOOGLE SHEETS
     async function syncTasksWithSheet() {
         if (!SPREADSHEET_API_URL) return;
@@ -685,10 +686,11 @@
             console.error('❌ Eroare sincronizare:', e);
         }
     }
-
+ 
     function getStatusClass(status) {
         if (!status) return '';
         const s = status.toLowerCase();
+        if (s.includes('neînceput') || s.includes('neinceput')) return 'status-neinceput';
         if (s.includes('început') || s.includes('inceput')) return 'status-inceput';
         if (s.includes('desfășurare') || s.includes('desfasurare')) return 'status-in-desfasurare';
         if (s.includes('trimis') || s.includes('aprobare')) return 'status-trimis';
@@ -697,7 +699,7 @@
         if (s.includes('pauză') || s.includes('pauza')) return 'status-pauza';
         return '';
     }
-
+ 
     function renderCalendar(tasks) {
         const tipMap = {
             'Postare': 'card-postare',
@@ -714,13 +716,13 @@
             'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
             'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'
         ];
-
+ 
         // Grupează taskurile pe luni
         const groups = {};
         tasks.forEach(task => {
             let groupKey = 'Idei creative';
             let monthOrder = 9999;
-
+ 
             if (task.data && task.data.trim() !== '') {
                 const clean = task.data.trim().split(' ')[0];
                 const parts = clean.split('.');
@@ -733,36 +735,36 @@
                     }
                 }
             }
-
+ 
             if (!groups[groupKey]) groups[groupKey] = { order: monthOrder, tasks: [] };
             groups[groupKey].tasks.push(task);
         });
-
+ 
         // Sortează lunile cronologic, Idei creative forțat la final
         const sortedGroups = Object.entries(groups).sort((a, b) => {
             if (a[0] === 'Idei creative') return 1;
             if (b[0] === 'Idei creative') return -1;
             return a[1].order - b[1].order;
         });
-
+ 
         const root = document.getElementById('calendar-root');
         root.innerHTML = '';
-
+ 
         sortedGroups.forEach(([monthName, group]) => {
             const section = document.createElement('section');
             section.className = 'glass-panel dynamic-spotlight';
-
+ 
             const header = document.createElement('div');
             header.className = 'month-header';
             header.textContent = monthName;
-
+ 
             const grid = document.createElement('div');
             grid.className = 'calendar-grid';
-
+ 
             group.tasks.forEach(task => {
                 const tipClass = tipMap[task.tip] || 'card-nespecificat';
                 const dotClass = respMap[task.responsabil] || 'dot-patru';
-
+ 
                 // Extrage ZZ.LL din data
                 let dateBadge = '--';
                 if (task.data && task.data.trim() !== '') {
@@ -772,10 +774,10 @@
                         dateBadge = parts[0].padStart(2, '0') + '.' + parts[1].padStart(2, '0');
                     }
                 }
-
+ 
                 const statusClass = getStatusClass(task.status || '');
                 const statusText = task.status ? task.status.trim() : '';
-
+ 
                 const card = document.createElement('div');
                 card.className = `event-card ${tipClass}`;
                 card.setAttribute('onclick', 'triggerTaskModal(this)');
@@ -790,14 +792,14 @@
                         <span class="type-label">${task.tip || 'Nespecificat'}</span>
                         ${statusText ? `<span class="status-badge ${statusClass}">${statusText}</span>` : '<span></span>'}
                     </div>`;
-
+ 
                 grid.appendChild(card);
             });
-
+ 
             section.appendChild(header);
             section.appendChild(grid);
             root.appendChild(section);
-
+ 
             // Spotlight mousemove
             section.addEventListener('mousemove', e => {
                 if (window.innerWidth <= 768) return;
@@ -806,7 +808,7 @@
                 section.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
             });
         });
-
+ 
         // Acordeon mobil
         if (window.innerWidth <= 768) {
             document.querySelectorAll('#calendar-root .month-header').forEach((hdr, index) => {
@@ -817,13 +819,13 @@
                 });
             });
         }
-
+ 
         // Re-aplică filtrul activ dacă există
         if (currentFilter) {
             toggleFilter(currentFilter, currentPill);
         }
     }
-
+ 
     const canvas = document.getElementById('particlesCanvas');
     const ctx = canvas.getContext('2d');
     
@@ -834,7 +836,7 @@
     let numbersArray = []; 
     let confettiArray = [];
     let isMobile = window.innerWidth <= 768;
-
+ 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -842,7 +844,7 @@
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
-
+ 
     const pX = new Float32Array(maxStars);
     const pY = new Float32Array(maxStars);
     const pSize = new Float32Array(maxStars);
@@ -850,7 +852,7 @@
     const pSpeedY = new Float32Array(maxStars);
     const pAlpha = new Float32Array(maxStars);
     const pPhase = new Float32Array(maxStars);
-
+ 
     function initParticles() {
         for (let i = 0; i < maxStars; i++) {
             pX[i] = Math.random() * canvas.width;
@@ -862,7 +864,7 @@
             pPhase[i] = Math.random() * Math.PI * 2;
         }
     }
-
+ 
     class PhysicsNumber {
         constructor(x, y) {
             this.x = x;
@@ -882,7 +884,7 @@
             this.x += this.vx;
             this.y += this.vy;
             this.rotation += this.rotationSpeed;
-
+ 
             if (this.y > canvas.height - 20) {
                 this.y = canvas.height - 20;
                 this.vy = -this.vy * this.bounce; 
@@ -907,7 +909,7 @@
             ctx.restore();
         }
     }
-
+ 
     class Confetti {
         constructor(x, y) {
             this.x = x;
@@ -938,7 +940,7 @@
             ctx.restore();
         }
     }
-
+ 
     function createNumbersExplosion() {
         const startX = canvas.width / 2;
         const startY = canvas.height * 0.15; 
@@ -946,14 +948,14 @@
             numbersArray.push(new PhysicsNumber(startX, startY));
         }
     }
-
+ 
     const orbs = [
         { x: 0.2, y: 0.3, r: 220, color: '168, 85, 247', speed: 0.00012, phase: 0 },
         { x: 0.8, y: 0.6, r: 180, color: '0, 210, 255', speed: 0.00009, phase: 2.1 },
         { x: 0.5, y: 0.85, r: 150, color: '245, 186, 66', speed: 0.00015, phase: 4.3 },
         { x: 0.15, y: 0.75, r: 130, color: '255, 0, 85', speed: 0.00011, phase: 1.5 },
     ];
-
+ 
     function drawOrbs(t) {
         if(isMobile) return; 
         orbs.forEach(orb => {
@@ -968,14 +970,14 @@
             ctx.fill();
         });
     }
-
+ 
     function animateMasterEngine(t = 0) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+ 
         drawOrbs(t);
-
+ 
         const activeStars = isMobile ? numStarsMobile : numStarsDesktop;
-
+ 
         for (let i = 0; i < activeStars; i++) {
             if (!isMobile) {
                 pX[i] += pSpeedX[i];
@@ -987,18 +989,18 @@
             }
             
             pPhase[i] += isMobile ? 0.02 : 0.01;
-
+ 
             let sinValue = Math.sin(pPhase[i]);
             let currentAlpha = isMobile 
                 ? Math.max(0, sinValue) * pAlpha[i] * 1.2 
                 : pAlpha[i] * (0.4 + sinValue * 0.6);
-
+ 
             if (currentAlpha > 0.02) {
                 ctx.fillStyle = `rgba(186, 144, 227, ${currentAlpha})`;
                 ctx.fillRect(pX[i], pY[i], pSize[i] * (isMobile ? 1.5 : 1), pSize[i] * (isMobile ? 1.5 : 1));
             }
         }
-
+ 
         for (let k = numbersArray.length - 1; k >= 0; k--) {
             numbersArray[k].update();
             numbersArray[k].draw(ctx);
@@ -1006,7 +1008,7 @@
                 numbersArray.splice(k, 1); 
             }
         }
-
+ 
         for (let j = confettiArray.length - 1; j >= 0; j--) {
             confettiArray[j].update();
             confettiArray[j].draw(ctx);
@@ -1014,12 +1016,12 @@
                 confettiArray.splice(j, 1); 
             }
         }
-
+ 
         requestAnimationFrame(animateMasterEngine);
     }
     initParticles();
     animateMasterEngine();
-
+ 
     // EASTER EGGS
     let logoClicks = 0;
     let titleClicks = 0;
@@ -1029,7 +1031,7 @@
     const logoImg = document.getElementById('easterEggLogo');
     const mainTitle = document.getElementById('easterEggTitle');
     const headerEl = document.querySelector('header');
-
+ 
     // Runaway Logo Game
     logoImg.addEventListener('click', (e) => {
         if (isFleeing) return;
@@ -1046,17 +1048,17 @@
             logoImg.classList.add('fleeing');
             
             setTimeout(() => { moveFleeingLogo(); }, 50);
-
+ 
             logoImg.addEventListener('mouseover', hoverFlee);
             logoImg.addEventListener('touchstart', touchFlee, {passive: false});
         }
     });
-
+ 
     function touchFlee(ev) {
         ev.preventDefault();
         hoverFlee();
     }
-
+ 
     function hoverFlee() {
         if (!isFleeing) return;
         fleeCount++;
@@ -1068,7 +1070,7 @@
             moveFleeingLogo();
         }
     }
-
+ 
     function moveFleeingLogo() {
         const x = Math.max(20, Math.random() * (window.innerWidth - 120));
         const y = Math.max(20, Math.random() * (window.innerHeight - 120));
@@ -1076,7 +1078,7 @@
         logoImg.style.top = `${y}px`;
         logoImg.style.transform = `scale(0.8) rotate(${Math.random() * 180 - 90}deg)`;
     }
-
+ 
     function endFleeing() {
         isFleeing = false;
         logoImg.removeEventListener('mouseover', hoverFlee);
@@ -1099,7 +1101,7 @@
             }
         }, 300);
     }
-
+ 
     mainTitle.addEventListener('click', () => {
         titleClicks++;
         if(titleClicks === 7) {
@@ -1107,7 +1109,7 @@
             titleClicks = 0; 
         }
     });
-
+ 
     function openProposalModal() { document.getElementById('proposalModal').classList.add('active'); }
     function triggerTaskModal(cardElement) {
         if(cardElement.classList.contains('dimmed-card')) return; 
@@ -1127,7 +1129,7 @@
     
     // FORMULARUL TĂU PENTRU PROPUNERI / TASKURI - NEATINS
     const APPS_SCRIPT_FORM_URL = 'https://script.google.com/macros/s/AKfycbysOYnARcMlWyCyp6hbbZvMcCvhfMcxJf92fgy_1OwtoW1b8tifUbnw2kujofKeui5c/exec'; 
-
+ 
     async function submitForm(e, mode) {
         e.preventDefault();
         const isTask = mode === 'task';
@@ -1135,7 +1137,7 @@
         const originalText = btn.textContent;
         btn.textContent = '⏳ Se trimite...';
         btn.disabled = true;
-
+ 
         const data = isTask ? {
             tip: 'task',
             task: document.getElementById('modalTaskName').textContent,
@@ -1149,7 +1151,7 @@
             telefon: document.getElementById('propPhone').value,
             descriere: document.getElementById('propText').value,
         };
-
+ 
         try {
             await fetch(APPS_SCRIPT_FORM_URL, {
                 method: 'POST',
@@ -1163,11 +1165,11 @@
         } catch {
             showToast('❌ Eroare de rețea. Încearcă din nou.', true);
         }
-
+ 
         btn.textContent = originalText;
         btn.disabled = false;
     }
-
+ 
     function showToast(message, isError = false) {
         const existing = document.getElementById('ssic-toast');
         if (existing) existing.remove();
@@ -1190,6 +1192,6 @@
         setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.4s'; setTimeout(() => toast.remove(), 400); }, 3000);
     }
 </script>
-
+ 
 </body>
 </html>
