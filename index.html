@@ -409,7 +409,18 @@
         .status-inceput { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
         .status-in-desfasurare { background: rgba(245, 186, 66, 0.15); color: var(--ssic-accent); border: 1px solid rgba(245, 186, 66, 0.3); }
         .status-trimis { background: rgba(249, 115, 22, 0.15); color: #f97316; border: 1px solid rgba(249, 115, 22, 0.3); }
-        .status-publicat { background: rgba(236, 72, 153, 0.15); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.3); }
+        .status-publicat { background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
+
+        /* DESCRIERE TASK ÎN MODAL */
+        .modal-task-desc {
+            width: 100%; margin-bottom: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px; padding: 12px 14px;
+            font-size: 0.85rem; color: rgba(248, 250, 252, 0.7);
+            line-height: 1.6; text-align: left;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
+        }
         .status-suspendat { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
         .status-pauza { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
 
@@ -521,151 +532,7 @@
         </div>
     </div>
 
-    <section class="glass-panel dynamic-spotlight">
-        <div class="month-header">Iunie 2026</div>
-        <div class="calendar-grid">
-            <div class="event-card card-postare" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">09.06</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Postare petrecere final sesiune</div>
-                <div class="card-bottom"><span class="type-label">Postare</span><span class="status-badge"></span></div>
-            </div>
-            <div class="event-card card-reel" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">26.06</span><span class="resp-dot dot-mihai"></span></div>
-                <div class="event-title">Videoclip prezentare facultate</div>
-                <div class="card-bottom"><span class="type-label">Reel/TikTok</span><span class="status-badge"></span></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="glass-panel dynamic-spotlight">
-        <div class="month-header">Iulie 2026</div>
-        <div class="calendar-grid">
-            <div class="event-card card-postare" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">15.07</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Postare grup boboci</div>
-                <div class="card-bottom"><span class="type-label">Postare</span><span class="status-badge"></span></div>
-            </div>
-            <div class="event-card card-story" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">16.07</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Știri cu valență</div>
-                <div class="card-bottom"><span class="type-label">Story</span><span></span></div>
-            </div>
-            <div class="event-card card-reel" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">19.07</span><span class="resp-dot dot-mihai"></span></div>
-                <div class="event-title">Videoclip promovare grup boboci</div>
-                <div class="card-bottom"><span class="type-label">Reel/TikTok</span><span></span></div>
-            </div>
-            <div class="event-card card-reel" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">27.07</span><span class="resp-dot dot-mihai-erica"></span></div>
-                <div class="event-title">Videoclip "variantă mai bună"</div>
-                <div class="card-bottom"><span class="type-label">Reel/TikTok</span><span></span></div>
-            </div>
-            <div class="event-card card-story" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">30.07</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Știri cu valență</div>
-                <div class="card-bottom"><span class="type-label">Story</span><span></span></div>
-            </div>
-            <div class="event-card card-story" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">31.07</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Q&A pentru boboci</div>
-                <div class="card-bottom"><span class="type-label">Story</span><span></span></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="glass-panel dynamic-spotlight">
-        <div class="month-header">August 2026</div>
-        <div class="calendar-grid">
-            <div class="event-card card-reel" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">07.08</span><span class="resp-dot dot-erica"></span></div>
-                <div class="event-title">Videoclip anul 1 vs. anul 4</div>
-                <div class="card-bottom"><span class="type-label">Reel/TikTok</span><span></span></div>
-            </div>
-            <div class="event-card card-story" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">13.08</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Știri cu valență</div>
-                <div class="card-bottom"><span class="type-label">Story</span><span></span></div>
-            </div>
-            <div class="event-card card-story" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">27.08</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Știri cu valență</div>
-                <div class="card-bottom"><span class="type-label">Story</span><span></span></div>
-            </div>
-            <div class="event-card card-story" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">28.08</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Q&A pentru boboci</div>
-                <div class="card-bottom"><span class="type-label">Story</span><span></span></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="glass-panel dynamic-spotlight">
-        <div class="month-header">Septembrie 2026</div>
-        <div class="calendar-grid">
-            <div class="event-card card-reel" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">09.09</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Tips&Tricks pentru cămin</div>
-                <div class="card-bottom"><span class="type-label">Reel/TikTok</span><span></span></div>
-            </div>
-            <div class="event-card card-story" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">10.09</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Știri cu valență</div>
-                <div class="card-bottom"><span class="type-label">Story</span><span></span></div>
-            </div>
-            <div class="event-card card-postare" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">16.09</span><span class="resp-dot dot-erica"></span></div>
-                <div class="event-title">Pliant cu informații pentru boboci</div>
-                <div class="card-bottom"><span class="type-label">Postare</span><span></span></div>
-            </div>
-            <div class="event-card card-story" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">24.09</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Știri cu valență</div>
-                <div class="card-bottom"><span class="type-label">Story</span><span></span></div>
-            </div>
-            <div class="event-card card-postare" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">25.09</span><span class="resp-dot dot-mihai-erica"></span></div>
-                <div class="event-title">Anunț discover SSIC</div>
-                <div class="card-bottom"><span class="type-label">Postare</span><span></span></div>
-            </div>
-            <div class="event-card card-story" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">25.09</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Q&A pentru boboci</div>
-                <div class="card-bottom"><span class="type-label">Story</span><span></span></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="glass-panel dynamic-spotlight">
-        <div class="month-header">Octombrie 2026</div>
-        <div class="calendar-grid">
-            <div class="event-card card-postare" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">05.10</span><span class="resp-dot dot-patru"></span></div>
-                <div class="event-title">Recrutări SSIC</div>
-                <div class="card-bottom"><span class="type-label">Postare</span><span></span></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="glass-panel dynamic-spotlight">
-        <div class="month-header">Idei creative</div>
-        <div class="calendar-grid">
-            <div class="event-card card-nespecificat" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">--</span><span class="resp-dot dot-mihai"></span></div>
-                <div class="event-title">Reel-uri "uitate"</div>
-                <div class="card-bottom"><span class="type-label">Nespecificat</span><span></span></div>
-            </div>
-            <div class="event-card card-nespecificat" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">--</span><span class="resp-dot dot-mihai-erica"></span></div>
-                <div class="event-title">Template cu ce fac voluntarii vara</div>
-                <div class="card-bottom"><span class="type-label">Nespecificat</span><span></span></div>
-            </div>
-            <div class="event-card card-nespecificat" onclick="triggerTaskModal(this)">
-                <div class="card-top"><span class="date-badge">--</span><span class="resp-dot dot-mihai-erica"></span></div>
-                <div class="event-title">Template playlist-ul verii</div>
-                <div class="card-bottom"><span class="type-label">Nespecificat</span><span></span></div>
-            </div>
-        </div>
-    </section>
+    <div id="calendar-root"></div>
 </div>
 
 <div class="modal-overlay" id="taskModal" onclick="closeActiveModal('taskModal')">
@@ -674,6 +541,7 @@
         <img src="logo_2.png" alt="" class="modal-logo" onerror="this.style.display='none'">
         <h2>Preluare Task</h2>
         <div class="target-task-name" id="modalTaskName">Nume Task</div>
+        <div class="modal-task-desc" id="modalTaskDesc" style="display:none;"></div>
         
         <form class="form-container-width" onsubmit="submitForm(event, 'task')">
             <div class="form-row-twin">
@@ -804,55 +672,155 @@
         });
     });
 
-    // SISTEM DE SINCRONIZARE STATUSURI DIN GOOGLE SHEETS
+    // SISTEM DE SINCRONIZARE COMPLETĂ DIN GOOGLE SHEETS
     async function syncTasksWithSheet() {
-        if(!SPREADSHEET_API_URL || SPREADSHEET_API_URL === 'https://script.google.com/macros/s/AKfycbwdayd0eU3iQBMW_7i91P71HBzj1K4Vp6Qpg2jS7ZdOa8IeHBWJeEQnFywmJGzCIm7Z/exec') return;
-        
+        if (!SPREADSHEET_API_URL) return;
         try {
-            // Adăugăm ?nocache=timestamp pentru a forța browserul să ia ultimele date
-            const response = await fetch(SPREADSHEET_API_URL + '?nocache=' + new Date().getTime());
-            const tasksFromSheet = await response.json();
-            
-            const allCards = document.querySelectorAll('.event-card');
-            
-            allCards.forEach(card => {
-                const titleEl = card.querySelector('.event-title');
-                if(!titleEl) return;
-                const title = titleEl.textContent.trim();
-                
-                const sheetTask = tasksFromSheet.find(t => t['titlu'] && t['titlu'] === title);
-                
-                if(sheetTask && sheetTask['status']) {
-                    const statusText = sheetTask['status'];
-                    let bottomDiv = card.querySelector('.card-bottom');
-                    let statusBadge = bottomDiv.querySelector('.status-badge');
-                    
-                    if(!statusBadge && statusText !== '') {
-                        statusBadge = document.createElement('span');
-                        statusBadge.className = 'status-badge';
-                        bottomDiv.appendChild(statusBadge);
-                    }
-                    
-                    if(statusBadge) {
-                        if(statusText === '') {
-                            statusBadge.remove();
-                        } else {
-                            statusBadge.textContent = statusText;
-                            statusBadge.className = 'status-badge'; // Resetăm clasele vechi
-                            
-                            const textLow = statusText.toLowerCase();
-                            if(textLow.includes('început') || textLow.includes('inceput')) statusBadge.classList.add('status-inceput');
-                            else if(textLow.includes('desfășurare') || textLow.includes('desfasurare')) statusBadge.classList.add('status-in-desfasurare');
-                            else if(textLow.includes('trimis') || textLow.includes('aprobare')) statusBadge.classList.add('status-trimis');
-                            else if(textLow.includes('publicat')) statusBadge.classList.add('status-publicat');
-                            else if(textLow.includes('suspendat')) statusBadge.classList.add('status-suspendat');
-                            else if(textLow.includes('pauză') || textLow.includes('pauza')) statusBadge.classList.add('status-pauza');
-                        }
+            const response = await fetch(SPREADSHEET_API_URL + '?nocache=' + Date.now());
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            const tasks = await response.json();
+            if (!Array.isArray(tasks)) { console.error('Date invalide:', tasks); return; }
+            renderCalendar(tasks);
+        } catch (e) {
+            console.error('❌ Eroare sincronizare:', e);
+        }
+    }
+
+    function getStatusClass(status) {
+        if (!status) return '';
+        const s = status.toLowerCase();
+        if (s.includes('început') || s.includes('inceput')) return 'status-inceput';
+        if (s.includes('desfășurare') || s.includes('desfasurare')) return 'status-in-desfasurare';
+        if (s.includes('trimis') || s.includes('aprobare')) return 'status-trimis';
+        if (s.includes('publicat')) return 'status-publicat';
+        if (s.includes('suspendat')) return 'status-suspendat';
+        if (s.includes('pauză') || s.includes('pauza')) return 'status-pauza';
+        return '';
+    }
+
+    function renderCalendar(tasks) {
+        const tipMap = {
+            'Postare': 'card-postare',
+            'Reel/TikTok': 'card-reel',
+            'Story': 'card-story'
+        };
+        const respMap = {
+            'Pătru': 'dot-patru', 'Patru': 'dot-patru',
+            'Erica': 'dot-erica',
+            'Mihai': 'dot-mihai',
+            'Mihai/Erica': 'dot-mihai-erica'
+        };
+        const monthNames = [
+            'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
+            'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'
+        ];
+
+        // Grupează taskurile pe luni
+        const groups = {};
+        tasks.forEach(task => {
+            let groupKey = 'Idei creative';
+            let monthOrder = 9999;
+
+            if (task.data && task.data.trim() !== '') {
+                const clean = task.data.trim().split(' ')[0];
+                const parts = clean.split('.');
+                if (parts.length >= 2) {
+                    const month = parseInt(parts[1]);
+                    const year = parts[2] ? parts[2].substring(0, 4) : '2026';
+                    if (month >= 1 && month <= 12) {
+                        groupKey = monthNames[month - 1] + ' ' + year;
+                        monthOrder = parseInt(year) * 100 + month;
                     }
                 }
+            }
+
+            if (!groups[groupKey]) groups[groupKey] = { order: monthOrder, tasks: [] };
+            groups[groupKey].tasks.push(task);
+        });
+
+        // Sortează lunile cronologic, Idei creative forțat la final
+        const sortedGroups = Object.entries(groups).sort((a, b) => {
+            if (a[0] === 'Idei creative') return 1;
+            if (b[0] === 'Idei creative') return -1;
+            return a[1].order - b[1].order;
+        });
+
+        const root = document.getElementById('calendar-root');
+        root.innerHTML = '';
+
+        sortedGroups.forEach(([monthName, group]) => {
+            const section = document.createElement('section');
+            section.className = 'glass-panel dynamic-spotlight';
+
+            const header = document.createElement('div');
+            header.className = 'month-header';
+            header.textContent = monthName;
+
+            const grid = document.createElement('div');
+            grid.className = 'calendar-grid';
+
+            group.tasks.forEach(task => {
+                const tipClass = tipMap[task.tip] || 'card-nespecificat';
+                const dotClass = respMap[task.responsabil] || 'dot-patru';
+
+                // Extrage ZZ.LL din data
+                let dateBadge = '--';
+                if (task.data && task.data.trim() !== '') {
+                    const clean = task.data.trim().split(' ')[0];
+                    const parts = clean.split('.');
+                    if (parts.length >= 2) {
+                        dateBadge = parts[0].padStart(2, '0') + '.' + parts[1].padStart(2, '0');
+                    }
+                }
+
+                const statusClass = getStatusClass(task.status || '');
+                const statusText = task.status ? task.status.trim() : '';
+
+                const card = document.createElement('div');
+                card.className = `event-card ${tipClass}`;
+                card.setAttribute('onclick', 'triggerTaskModal(this)');
+                if (task.detalii && task.detalii.trim()) card.dataset.desc = task.detalii.trim();
+                card.innerHTML = `
+                    <div class="card-top">
+                        <span class="date-badge">${dateBadge}</span>
+                        <span class="resp-dot ${dotClass}"></span>
+                    </div>
+                    <div class="event-title">${task.titlu}</div>
+                    <div class="card-bottom">
+                        <span class="type-label">${task.tip || 'Nespecificat'}</span>
+                        ${statusText ? `<span class="status-badge ${statusClass}">${statusText}</span>` : '<span></span>'}
+                    </div>`;
+
+                grid.appendChild(card);
             });
-        } catch (e) {
-            console.error('Eroare la sincronizarea cu Google Sheets:', e);
+
+            section.appendChild(header);
+            section.appendChild(grid);
+            root.appendChild(section);
+
+            // Spotlight mousemove
+            section.addEventListener('mousemove', e => {
+                if (window.innerWidth <= 768) return;
+                const rect = section.getBoundingClientRect();
+                section.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+                section.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
+            });
+        });
+
+        // Acordeon mobil
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('#calendar-root .month-header').forEach((hdr, index) => {
+                const panel = hdr.closest('.glass-panel');
+                if (index !== 0) panel.classList.add('collapsed');
+                hdr.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) panel.classList.toggle('collapsed');
+                });
+            });
+        }
+
+        // Re-aplică filtrul activ dacă există
+        if (currentFilter) {
+            toggleFilter(currentFilter, currentPill);
         }
     }
 
@@ -1145,6 +1113,14 @@
         if(cardElement.classList.contains('dimmed-card')) return; 
         const rawTitle = cardElement.querySelector('.event-title').textContent.trim();
         document.getElementById('modalTaskName').textContent = rawTitle;
+        const descEl = document.getElementById('modalTaskDesc');
+        const desc = cardElement.dataset.desc || '';
+        if (desc) {
+            descEl.textContent = desc;
+            descEl.style.display = 'block';
+        } else {
+            descEl.style.display = 'none';
+        }
         document.getElementById('taskModal').classList.add('active');
     }
     function closeActiveModal(modalId) { document.getElementById(modalId).classList.remove('active'); }
