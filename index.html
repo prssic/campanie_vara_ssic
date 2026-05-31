@@ -22,29 +22,24 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
         :root {
-            /* PALETA OFICIALĂ SSIC & HYPERSPACE THEME */
             --ssic-main: #1a0526;
             --ssic-accent: #f5ba42;
             --text-main: #f8fafc;
             --text-sub: #a78bfa;
             
-            /* FUNDAL COSMIC DEEP SPACE */
             --bg-base: #06010b;
             --modal-overlay: rgba(6, 1, 11, 0.6);
 
-            /* PARAMETRI PREMIUM FROSTED GLASS */
             --glass-bg: rgba(30, 8, 45, 0.55);
             --glass-border: rgba(255, 255, 255, 0.15);
             --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
             --glass-blur: 24px;
 
-            /* TIP CONȚINUT - ACCENTE NEON */
             --color-postare: #00d2ff;
             --color-reel: #ff0055;
             --color-story: #a855f7;
             --color-unknown: #475569;
 
-            /* RESPONSABILI */
             --resp-patru: #ff2a2a;         
             --resp-erica: #ff007f;         
             --resp-mihai: #3b82f6;         
@@ -70,7 +65,6 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             
-            /* GRADIENT SUBTIL ÎN MIȘCARE */
             background: linear-gradient(135deg, #06010b 0%, #1a0526 40%, #2f0e3d 60%, #170221 80%, #06010b 100%);
             background-size: 300% 300%;
             background-color: var(--bg-base);
@@ -96,7 +90,7 @@
             z-index: 0; 
         }
 
-        /* LOGO FILIGRAN - ASCUNS COMPLET PE MOBIL */
+        /* LOGO FILIGRAN - ASCUNS PE MOBIL */
         .bg-logo {
             position: fixed;
             top: 50%; left: 50%;
@@ -112,9 +106,7 @@
         }
 
         @media (max-width: 768px) {
-            .bg-logo {
-                display: none !important;
-            }
+            .bg-logo { display: none !important; }
         }
 
         @keyframes spinLogoVertical {
@@ -186,7 +178,7 @@
             .floating-controls { position: relative; width: 100%; display: flex; justify-content: center; margin-bottom: 25px; top: 0; right: 0; }
         }
 
-        /* HEADER SECURIZAT PENTRU A FI VIZIBIL */
+        /* HEADER */
         header {
             position: relative; 
             z-index: 20; 
@@ -203,19 +195,34 @@
             cursor: pointer;
             user-select: none;
             text-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
         }
-        .header-logo { width: 75px; height: 75px; object-fit: contain; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; filter: drop-shadow(0 4px 12px rgba(245, 186, 66, 0.3)); }
-        header:hover .header-logo { transform: scale(1.1) rotate(5deg); }
+        
+        .header-logo { 
+            width: 100px; height: 100px; 
+            object-fit: contain; 
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); 
+            cursor: pointer; 
+            filter: drop-shadow(0 4px 12px rgba(245, 186, 66, 0.4)); 
+            z-index: 21; 
+        }
+        header:hover .header-logo:not(.fleeing) { transform: scale(1.1) rotate(5deg); }
+
+        /* EASTER EGG LOGO FLEEING */
+        .header-logo.fleeing {
+            position: fixed !important;
+            z-index: 99999 !important;
+            pointer-events: auto;
+            transition: left 0.3s ease-out, top 0.3s ease-out, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        }
 
         @media (max-width: 650px) {
             header h1 { font-size: 2.2rem; }
-            .header-logo { width: 50px; height: 50px; }
+            .header-logo { width: 75px; height: 75px; } 
             header { gap: 15px; margin-bottom: 30px; }
         }
 
-        /* GLASS PANELS */
+        /* GLASS PANELS CU SPOTLIGHT */
         .glass-panel {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)), var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -230,7 +237,17 @@
             position: relative;
             animation: floatIn 0.8s ease-out forwards;
             opacity: 0;
+            transition: padding 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+
+        .glass-panel::before {
+            content: ''; position: absolute;
+            top: var(--spot-y, 50%); left: var(--spot-x, 50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(245, 186, 66, 0.12) 0%, transparent 60%);
+            transform: translate(-50%, -50%); pointer-events: none; z-index: 0; opacity: 0; transition: opacity 0.5s ease; border-radius: 50%;
+        }
+        .glass-panel:hover::before { opacity: 1; }
 
         .glass-panel:nth-child(1) { animation-delay: 0.1s; }
         .glass-panel:nth-child(2) { animation-delay: 0.2s; }
@@ -252,14 +269,12 @@
             border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.1);
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-            cursor: pointer;
-            user-select: none;
+            cursor: pointer; user-select: none;
         }
         .legend-pill:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
 
         .legend-pill.active-filter {
-            background: rgba(245, 186, 66, 0.15);
-            border-color: var(--ssic-accent);
+            background: rgba(245, 186, 66, 0.15); border-color: var(--ssic-accent);
             box-shadow: 0 0 15px rgba(245, 186, 66, 0.4), inset 0 1px 2px rgba(255,255,255,0.3);
             transform: translateY(-2px) scale(1.05);
         }
@@ -281,45 +296,45 @@
             gap: 20px;
         }
 
-        /* MAGIA PENTRU MOBIL: CARUSEL SWIPE TIP APP STORE (Doar la Calendar) */
+        /* ----------------------------------------------------
+           NOU UI MOBIL: INTERACTIVE ACCORDION (FOLDABLE MONTHS)
+           ---------------------------------------------------- */
         @media (max-width: 768px) {
-            
-            /* Calendarul devine carusel iOS Style */
-            .calendar-grid {
-                display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 25px; 
-                margin: 0; 
-            }
-            .calendar-grid::-webkit-scrollbar { display: none; }
-            
-            /* Indicator vizual */
             .month-header {
-                display: flex; justify-content: space-between; align-items: baseline;
+                display: flex; justify-content: space-between; align-items: center;
+                cursor: pointer; -webkit-tap-highlight-color: transparent;
             }
+            
+            /* Săgeată aurie animată */
             .month-header::after {
-                content: 'Swipe ➔';
-                font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.5);
-                text-transform: uppercase; letter-spacing: 0.1em;
-                animation: swipeHint 2s infinite ease-in-out;
+                content: ''; width: 10px; height: 10px;
+                border-right: 3px solid var(--ssic-accent); border-bottom: 3px solid var(--ssic-accent);
+                transform: rotate(45deg); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                margin-right: 5px; margin-bottom: 4px; opacity: 0.8;
             }
-            @keyframes swipeHint {
-                0%, 100% { transform: translateX(0); opacity: 0.4; }
-                50% { transform: translateX(5px); opacity: 0.9; }
+            
+            .glass-panel.collapsed .month-header::after {
+                transform: rotate(-45deg); margin-bottom: -4px;
+            }
+            
+            /* Ascundere fluidă a gridului */
+            .calendar-grid {
+                transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease, margin 0.4s ease;
+                max-height: 2500px; /* Suficient pentru carduri */
+                opacity: 1; overflow: hidden; transform-origin: top;
             }
 
-            .event-card {
-                flex: 0 0 85vw; 
-                scroll-snap-align: center;
-                min-height: 140px;
-                margin-right: 15px; 
+            .glass-panel.collapsed .calendar-grid {
+                max-height: 0; opacity: 0; margin-top: -10px; pointer-events: none;
             }
-            .event-card:last-child {
-                margin-right: 0;
+            
+            /* Panoul devine mai subțire când e închis */
+            .glass-panel.collapsed {
+                padding-bottom: 10px; 
             }
         }
 
-        /* CARDURI CALENDAR - SUPORT PENTRU FILTRU HOLOGRAFIC */
+        /* CARDURI CALENDAR */
         .event-card {
             position: relative; border-radius: 16px; padding: 20px; min-height: 130px;
             display: flex; flex-direction: column; justify-content: space-between;
@@ -458,14 +473,12 @@
         <button class="action-btn" onclick="openProposalModal()">💡 Idei noi SSIC</button>
     </div>
 
-    <!-- HEADER SECURIZAT -->
     <header>
         <img src="logo_2.png" alt="" class="header-logo" id="easterEggLogo" onerror="this.style.display='none'">
         <h1 id="easterEggTitle">Campanie Vară 2026</h1>
     </header>
 
-    <!-- LEGENDĂ (FĂRĂ SPOTLIGHT) -->
-    <div class="glass-panel">
+    <div class="glass-panel dynamic-spotlight">
         <div class="legend-container-inner">
             <div class="legend-block">
                 <h3>Tip Conținut</h3>
@@ -488,8 +501,7 @@
         </div>
     </div>
 
-    <!-- IUNIE -->
-    <section class="glass-panel">
+    <section class="glass-panel dynamic-spotlight">
         <div class="month-header">Iunie 2026</div>
         <div class="calendar-grid">
             <div class="event-card card-postare" onclick="triggerTaskModal(this)">
@@ -505,8 +517,7 @@
         </div>
     </section>
 
-    <!-- IULIE -->
-    <section class="glass-panel">
+    <section class="glass-panel dynamic-spotlight">
         <div class="month-header">Iulie 2026</div>
         <div class="calendar-grid">
             <div class="event-card card-postare" onclick="triggerTaskModal(this)">
@@ -542,8 +553,7 @@
         </div>
     </section>
 
-    <!-- AUGUST -->
-    <section class="glass-panel">
+    <section class="glass-panel dynamic-spotlight">
         <div class="month-header">August 2026</div>
         <div class="calendar-grid">
             <div class="event-card card-reel" onclick="triggerTaskModal(this)">
@@ -569,8 +579,7 @@
         </div>
     </section>
 
-    <!-- SEPTEMBRIE -->
-    <section class="glass-panel">
+    <section class="glass-panel dynamic-spotlight">
         <div class="month-header">Septembrie 2026</div>
         <div class="calendar-grid">
             <div class="event-card card-reel" onclick="triggerTaskModal(this)">
@@ -606,8 +615,7 @@
         </div>
     </section>
 
-    <!-- OCTOMBRIE -->
-    <section class="glass-panel">
+    <section class="glass-panel dynamic-spotlight">
         <div class="month-header">Octombrie 2026</div>
         <div class="calendar-grid">
             <div class="event-card card-postare" onclick="triggerTaskModal(this)">
@@ -618,8 +626,7 @@
         </div>
     </section>
 
-    <!-- IN ASTEPTARE -->
-    <section class="glass-panel">
+    <section class="glass-panel dynamic-spotlight">
         <div class="month-header">Idei creative</div>
         <div class="calendar-grid">
             <div class="event-card card-nespecificat" onclick="triggerTaskModal(this)">
@@ -641,7 +648,6 @@
     </section>
 </div>
 
-<!-- MODAL ÎNSCRIERE TASK -->
 <div class="modal-overlay" id="taskModal" onclick="closeActiveModal('taskModal')">
     <div class="modal-box" onclick="event.stopPropagation()">
         <button class="close-btn" onclick="closeActiveModal('taskModal')">&times;</button>
@@ -660,7 +666,6 @@
     </div>
 </div>
 
-<!-- MODAL PROPUNERE NOUĂ -->
 <div class="modal-overlay" id="proposalModal" onclick="closeActiveModal('proposalModal')">
     <div class="modal-box" onclick="event.stopPropagation()">
         <button class="close-btn" onclick="closeActiveModal('proposalModal')">&times;</button>
@@ -690,6 +695,25 @@
     };
     window.addEventListener('load', () => { setTimeout(hidePreloader, 800); });
     setTimeout(hidePreloader, 3000); 
+
+    // UX Acordeon Interactiv pe Mobil
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.innerWidth <= 768) {
+            const headers = document.querySelectorAll('.month-header');
+            headers.forEach((header, index) => {
+                const panel = header.closest('.glass-panel');
+                // Închidem toate lunile cu excepția primei (Iunie 2026) și a legendei
+                if (index !== 0 && panel.querySelector('.calendar-grid')) {
+                    panel.classList.add('collapsed');
+                }
+                header.addEventListener('click', () => {
+                    if(window.innerWidth <= 768) {
+                        panel.classList.toggle('collapsed');
+                    }
+                });
+            });
+        }
+    });
 
     let currentFilter = null;
     let currentPill = null;
@@ -737,15 +761,25 @@
         });
     }
 
+    document.querySelectorAll('.dynamic-spotlight').forEach(panel => {
+        panel.addEventListener('mousemove', e => {
+            const rect = panel.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            panel.style.setProperty('--spot-x', `${x}px`);
+            panel.style.setProperty('--spot-y', `${y}px`);
+        });
+    });
+
     const canvas = document.getElementById('particlesCanvas');
     const ctx = canvas.getContext('2d');
     
     const numStarsDesktop = 1500; 
-    const numStarsMobile = 40; // Doar 40 de particule pe mobil pentru 0 lag
+    const numStarsMobile = 400; // Ridicat de la 120 la 400 pt mobil
     const maxStars = Math.max(numStarsDesktop, numStarsMobile);
     
-    let warpSpeed = 1;
     let numbersArray = []; 
+    let confettiArray = [];
     let isMobile = window.innerWidth <= 768;
 
     function resizeCanvas() {
@@ -808,7 +842,7 @@
                 this.alpha -= 0.01;
             }
         }
-        draw() {
+        draw(ctx) {
             ctx.save();
             ctx.translate(this.x, this.y);
             ctx.rotate(this.rotation);
@@ -817,6 +851,37 @@
             ctx.shadowColor = "rgba(245, 186, 66, 0.6)";
             ctx.shadowBlur = 10;
             ctx.fillText(this.text, 0, 0);
+            ctx.restore();
+        }
+    }
+
+    class Confetti {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 6 + 4;
+            this.vx = (Math.random() - 0.5) * 12;
+            this.vy = (Math.random() - 0.5) * 12 - 5;
+            this.gravity = 0.3;
+            this.life = 1.0;
+            this.color = Math.random() > 0.5 ? '#f5ba42' : '#a855f7';
+            this.rotation = Math.random() * 360;
+            this.rotSpeed = (Math.random() - 0.5) * 15;
+        }
+        update() {
+            this.vy += this.gravity;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.life -= 0.015;
+            this.rotation += this.rotSpeed;
+        }
+        draw(ctx) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation * Math.PI / 180);
+            ctx.globalAlpha = Math.max(0, this.life);
+            ctx.fillStyle = this.color;
+            ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
             ctx.restore();
         }
     }
@@ -837,7 +902,7 @@
     ];
 
     function drawOrbs(t) {
-        if(isMobile) return; // Fără orbe ambientale grele pe mobil
+        if(isMobile) return; 
         orbs.forEach(orb => {
             const cx = (orb.x + Math.sin(t * orb.speed + orb.phase) * 0.12) * canvas.width;
             const cy = (orb.y + Math.cos(t * orb.speed * 0.7 + orb.phase) * 0.1) * canvas.height;
@@ -860,9 +925,8 @@
 
         for (let i = 0; i < activeStars; i++) {
             if (!isMobile) {
-                // Mișcare completă doar pe Desktop
-                pX[i] += pSpeedX[i] * warpSpeed;
-                pY[i] += pSpeedY[i] * warpSpeed;
+                pX[i] += pSpeedX[i];
+                pY[i] += pSpeedY[i];
                 if (pX[i] < 0) pX[i] = canvas.width;
                 if (pX[i] > canvas.width) pX[i] = 0;
                 if (pY[i] < 0) pY[i] = canvas.height;
@@ -871,7 +935,6 @@
             
             pPhase[i] += isMobile ? 0.02 : 0.01;
 
-            // Algoritm special de aprindere/stingere (Twinkle) pt mobil
             let sinValue = Math.sin(pPhase[i]);
             let currentAlpha = isMobile 
                 ? Math.max(0, sinValue) * pAlpha[i] * 1.2 
@@ -885,9 +948,17 @@
 
         for (let k = numbersArray.length - 1; k >= 0; k--) {
             numbersArray[k].update();
-            numbersArray[k].draw();
+            numbersArray[k].draw(ctx);
             if (numbersArray[k].alpha <= 0) {
                 numbersArray.splice(k, 1); 
+            }
+        }
+
+        for (let j = confettiArray.length - 1; j >= 0; j--) {
+            confettiArray[j].update();
+            confettiArray[j].draw(ctx);
+            if (confettiArray[j].life <= 0) {
+                confettiArray.splice(j, 1); 
             }
         }
 
@@ -899,22 +970,82 @@
     // EASTER EGGS
     let logoClicks = 0;
     let titleClicks = 0;
+    let fleeCount = 0;
+    let isFleeing = false;
     
     const logoImg = document.getElementById('easterEggLogo');
     const mainTitle = document.getElementById('easterEggTitle');
+    const headerEl = document.querySelector('header');
 
-    logoImg.addEventListener('click', () => {
+    // Runaway Logo Game
+    logoImg.addEventListener('click', (e) => {
+        if (isFleeing) return;
         logoClicks++;
         if(logoClicks === 5) {
-            warpSpeed = 15;
-            document.querySelector('.bg-logo').style.animationDuration = '2s';
-            setTimeout(() => {
-                warpSpeed = 1;
-                document.querySelector('.bg-logo').style.animationDuration = '25s';
-            }, 4000);
+            isFleeing = true;
             logoClicks = 0;
+            fleeCount = 0;
+            
+            const rect = logoImg.getBoundingClientRect();
+            document.body.appendChild(logoImg);
+            logoImg.style.left = rect.left + 'px';
+            logoImg.style.top = rect.top + 'px';
+            logoImg.classList.add('fleeing');
+            
+            setTimeout(() => { moveFleeingLogo(); }, 50);
+
+            logoImg.addEventListener('mouseover', hoverFlee);
+            logoImg.addEventListener('touchstart', touchFlee, {passive: false});
         }
     });
+
+    function touchFlee(ev) {
+        ev.preventDefault();
+        hoverFlee();
+    }
+
+    function hoverFlee() {
+        if (!isFleeing) return;
+        fleeCount++;
+        
+        // Exact 4 touch-uri/fugi. La a 5-a se intoarce!
+        if (fleeCount >= 5) {
+            endFleeing();
+        } else {
+            moveFleeingLogo();
+        }
+    }
+
+    function moveFleeingLogo() {
+        const x = Math.max(20, Math.random() * (window.innerWidth - 120));
+        const y = Math.max(20, Math.random() * (window.innerHeight - 120));
+        logoImg.style.left = `${x}px`;
+        logoImg.style.top = `${y}px`;
+        logoImg.style.transform = `scale(0.8) rotate(${Math.random() * 180 - 90}deg)`;
+    }
+
+    function endFleeing() {
+        isFleeing = false;
+        logoImg.removeEventListener('mouseover', hoverFlee);
+        logoImg.removeEventListener('touchstart', touchFlee);
+        
+        logoImg.classList.remove('fleeing');
+        logoImg.style.left = '';
+        logoImg.style.top = '';
+        logoImg.style.transform = '';
+        headerEl.insertBefore(logoImg, mainTitle);
+        
+        // Confetti 🎉
+        setTimeout(() => {
+            const rect = logoImg.getBoundingClientRect();
+            const startX = rect.left + rect.width / 2;
+            const startY = rect.top + rect.height / 2;
+            
+            for(let i=0; i<40; i++) {
+                confettiArray.push(new Confetti(startX, startY));
+            }
+        }, 300);
+    }
 
     mainTitle.addEventListener('click', () => {
         titleClicks++;
