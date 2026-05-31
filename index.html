@@ -351,124 +351,224 @@
             gap: 20px;
         }
 
+        /* ── MOBILE BOTTOM NAV BAR ── */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+            background: rgba(8, 2, 14, 0.88);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border-top: 1px solid rgba(168, 85, 247, 0.18);
+            padding: 0 4px;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+            height: 72px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .mobile-bottom-nav::-webkit-scrollbar { display: none; }
+
+        .mobile-bottom-nav-inner {
+            display: flex;
+            align-items: stretch;
+            height: 100%;
+            gap: 0;
+            min-width: max-content;
+        }
+
+        .bottom-nav-tab {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 3px;
+            min-width: 64px; padding: 0 10px;
+            cursor: pointer; border: none; background: none;
+            color: rgba(255,255,255,0.35);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.62rem; font-weight: 700;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bottom-nav-tab.active { color: #ffffff; }
+        .bottom-nav-tab.active::after {
+            content: '';
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 32px; height: 3px; border-radius: 0 0 4px 4px;
+            background: linear-gradient(90deg, #a855f7, #f5ba42);
+        }
+        .bottom-nav-tab-icon {
+            width: 22px; height: 22px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; line-height: 1;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bottom-nav-tab.active .bottom-nav-tab-icon { transform: scale(1.15); }
+        .bottom-nav-tab-count {
+            position: absolute; top: 8px; right: 6px;
+            min-width: 16px; height: 16px;
+            background: rgba(168, 85, 247, 0.7);
+            border-radius: 8px; font-size: 0.55rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            padding: 0 3px;
+            color: #fff;
+        }
+        .bottom-nav-tab.ideas-tab { color: rgba(0, 210, 255, 0.5); }
+        .bottom-nav-tab.ideas-tab.active { color: #00d2ff; }
+        .bottom-nav-tab.ideas-tab.active::after { background: linear-gradient(90deg, #00d2ff, #a855f7); }
+
         @media (max-width: 768px) {
             /* ── BODY MOBIL ── */
             body {
                 padding: 0;
-                padding-bottom: 100px;
+                padding-bottom: 84px;
             }
 
-            /* ── HEADER MOBIL FIX ── */
+            .mobile-bottom-nav { display: flex; }
+
+            /* ── TOPBAR MOBIL ── */
             .mobile-topbar {
                 position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-                height: 64px;
+                height: 62px;
                 display: flex; align-items: center; justify-content: space-between;
-                padding: 0 18px;
-                background: rgba(6, 1, 11, 0.75);
-                backdrop-filter: blur(20px) saturate(180%);
-                -webkit-backdrop-filter: blur(20px) saturate(180%);
-                border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+                padding: 0 16px;
+                background: rgba(6, 1, 11, 0.82);
+                backdrop-filter: blur(24px) saturate(180%);
+                -webkit-backdrop-filter: blur(24px) saturate(180%);
+                border-bottom: 1px solid rgba(168, 85, 247, 0.12);
             }
             .mobile-topbar-logo {
-                height: 36px; width: 36px; object-fit: contain;
-                filter: drop-shadow(0 0 8px rgba(245,186,66,0.5));
+                height: 44px; width: 44px; object-fit: contain;
+                filter: drop-shadow(0 0 10px rgba(245,186,66,0.55));
+                cursor: pointer;
+                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                flex-shrink: 0;
             }
+            .mobile-topbar-logo:active { transform: scale(0.88) rotate(-8deg); }
             .mobile-topbar-title {
-                font-size: 1rem; font-weight: 800; letter-spacing: -0.01em;
-                background: linear-gradient(90deg, #f5ba42, #a855f7);
-                -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-                background-clip: text;
+                font-size: 1.05rem; font-weight: 800; letter-spacing: -0.02em;
+                color: #ffffff;
+                flex: 1; text-align: center; padding: 0 12px;
+                cursor: pointer;
+                user-select: none;
             }
             .mobile-topbar-btn {
-                background: linear-gradient(135deg, rgba(168,85,247,0.3), rgba(168,85,247,0.1));
-                border: 1px solid rgba(168,85,247,0.45);
-                color: #fff; padding: 7px 13px; border-radius: 20px;
-                font-size: 0.72rem; font-weight: 700; cursor: pointer;
+                background: rgba(0, 210, 255, 0.12);
+                border: 1px solid rgba(0, 210, 255, 0.35);
+                color: #00d2ff; padding: 7px 13px; border-radius: 20px;
+                font-size: 0.7rem; font-weight: 700; cursor: pointer;
+                font-family: 'Plus Jakarta Sans', sans-serif;
                 backdrop-filter: blur(10px);
                 transition: transform 0.15s ease, background 0.2s ease;
+                flex-shrink: 0;
             }
-            .mobile-topbar-btn:active { transform: scale(0.93); }
+            .mobile-topbar-btn:active { transform: scale(0.92); background: rgba(0, 210, 255, 0.22); }
+
+            /* ── EASTER EGG LOGO PE MOBIL ── */
+            .mobile-topbar-logo.fleeing {
+                position: fixed !important;
+                z-index: 99999 !important;
+                pointer-events: auto;
+                transition: left 0.3s ease-out, top 0.3s ease-out, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+            }
 
             /* ── DESKTOP HEADER / CONTROLS ASCUNSE PE MOBIL ── */
             header, .floating-controls { display: none !important; }
 
             /* ── CONTAINER MOBIL ── */
             .container {
-                padding-top: 72px;
+                padding-top: 70px;
                 width: 100%; max-width: 100%;
             }
 
-            /* ── LEGENDĂ MOBIL ── */
+            /* ── FILTER BAR (înlocuiește legenda grea) ── */
             .glass-panel:not(.month-section) {
-                margin: 0 14px 20px;
-                border-radius: 18px;
-                padding: 16px;
+                display: none !important; /* legenda desktop ascunsă */
             }
-            .legend-container-inner { flex-direction: column; gap: 14px; }
-            .legend-block h3 { font-size: 0.65rem; margin-bottom: 8px; }
-            .legend-pill { font-size: 0.72rem; padding: 5px 10px; border-radius: 10px; }
 
-            /* ── MONTH TABS NAV ── */
-            .month-tabs-nav {
-                display: flex; gap: 8px;
-                padding: 0 14px 14px;
-                overflow-x: auto; scroll-snap-type: x mandatory;
+            /* ── MOBILE FILTER STRIP ── */
+            .mobile-filter-strip {
+                display: flex;
+                gap: 7px;
+                padding: 10px 14px 12px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
             }
-            .month-tabs-nav::-webkit-scrollbar { display: none; }
-            .month-tab {
-                flex-shrink: 0; scroll-snap-align: start;
-                padding: 8px 16px; border-radius: 20px;
-                font-size: 0.78rem; font-weight: 700;
+            .mobile-filter-strip::-webkit-scrollbar { display: none; }
+
+            .mf-chip {
+                display: flex; align-items: center; gap: 6px;
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-size: 0.71rem; font-weight: 700;
+                white-space: nowrap;
+                scroll-snap-align: start;
+                flex-shrink: 0;
+                cursor: pointer;
+                border: 1.5px solid rgba(255,255,255,0.1);
                 background: rgba(255,255,255,0.05);
-                border: 1px solid rgba(255,255,255,0.1);
-                color: rgba(255,255,255,0.5);
-                cursor: pointer; white-space: nowrap;
-                transition: all 0.2s ease;
+                color: rgba(255,255,255,0.6);
+                transition: all 0.22s ease;
                 -webkit-tap-highlight-color: transparent;
+                font-family: 'Plus Jakarta Sans', sans-serif;
             }
-            .month-tab.active {
-                background: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(245,186,66,0.15));
-                border-color: rgba(168,85,247,0.5);
+            .mf-chip.active {
                 color: #fff;
-                box-shadow: 0 0 16px rgba(168,85,247,0.3);
+                background: rgba(255,255,255,0.12);
+                border-color: rgba(255,255,255,0.35);
+                box-shadow: 0 0 12px rgba(255,255,255,0.08);
+            }
+            .mf-chip.dimmed { opacity: 0.32; filter: grayscale(60%); }
+            .mf-chip-dot {
+                width: 8px; height: 8px; border-radius: 50%;
+                flex-shrink: 0;
+                border: 1.5px solid rgba(255,255,255,0.8);
+            }
+            .mf-chip-sq {
+                width: 8px; height: 8px; border-radius: 2px;
+                flex-shrink: 0;
+            }
+            /* Separator vizual între tip și resp */
+            .mf-divider {
+                width: 1px; background: rgba(255,255,255,0.15);
+                margin: 0 2px; flex-shrink: 0;
+                align-self: stretch; border-radius: 1px;
             }
 
-            /* ── SWIPER CONTAINER ── */
-            .months-swiper-outer {
-                overflow: hidden;
-                width: 100%;
-            }
+            /* ── MOBILE CALENDAR SCROLL VIEW ── */
+            .month-section { display: none !important; }
+
+            /* ── SWIPER OUTER ── */
+            .months-swiper-outer { overflow: hidden; width: 100%; }
             .months-swiper {
                 display: flex;
                 transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
                 will-change: transform;
             }
             .month-slide {
-                flex: 0 0 100%;
-                width: 100%;
-                padding: 0 14px;
+                flex: 0 0 100%; width: 100%;
+                padding: 0 12px 12px;
             }
+            .month-tabs-nav { display: none; } /* ascuns — folosim bottom nav */
+            .swiper-dots { display: none; }   /* ascuns — info în bottom nav */
 
             /* ── CARDURI MOBIL ── */
-            .month-section { display: none !important; } /* ascunde glass-panel desktop pe mobil */
-
-            .calendar-grid {
-                display: flex; flex-direction: column; gap: 10px;
-            }
+            .calendar-grid { display: flex; flex-direction: column; gap: 9px; }
 
             .event-card {
                 border-radius: 14px; padding: 14px 16px; min-height: auto;
-                backdrop-filter: blur(12px) saturate(130%);
-                -webkit-backdrop-filter: blur(12px) saturate(130%);
+                backdrop-filter: blur(14px) saturate(140%);
+                -webkit-backdrop-filter: blur(14px) saturate(140%);
                 box-shadow: none;
                 transform: none !important;
                 transition: opacity 0.2s ease, filter 0.2s ease !important;
             }
             .event-card::after { display: none; }
-            .event-card:active:not(.dimmed-card) { opacity: 0.75; }
-            .event-card.dimmed-card { opacity: 0.18; filter: grayscale(100%); transform: none !important; }
+            .event-card:active:not(.dimmed-card) { opacity: 0.7; transform: scale(0.98) !important; }
+            .event-card.dimmed-card { opacity: 0.14; filter: grayscale(100%); transform: none !important; }
 
             .card-top { margin-bottom: 8px; }
             .date-badge { font-size: 1rem; }
@@ -476,35 +576,37 @@
             .card-bottom { padding-top: 10px; }
             .type-label { font-size: 0.65rem; }
 
-            /* ── MONTH COUNT BADGE ── */
-            .month-count {
-                display: inline-flex; align-items: center; justify-content: center;
-                width: 18px; height: 18px; border-radius: 50%;
-                background: rgba(168,85,247,0.4);
-                font-size: 0.6rem; font-weight: 800; color: #fff;
-                margin-left: 6px; vertical-align: middle;
+            /* Luna badge pe card (apare la filtrare) */
+            .card-month-badge {
+                font-size: 0.6rem; font-weight: 700; 
+                color: rgba(255,255,255,0.45);
+                background: rgba(255,255,255,0.07);
+                padding: 2px 7px; border-radius: 8px;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                white-space: nowrap;
             }
 
-            /* ── DOTS INDICATOR ── */
-            .swiper-dots {
-                display: flex; justify-content: center; gap: 6px;
-                padding: 14px 0 6px;
-            }
-            .swiper-dot {
-                width: 5px; height: 5px; border-radius: 50%;
-                background: rgba(255,255,255,0.2);
-                transition: all 0.25s ease;
-            }
-            .swiper-dot.active {
-                width: 18px; border-radius: 3px;
-                background: linear-gradient(90deg, #a855f7, #f5ba42);
-            }
-
-            /* ── GLASS PANEL PE MOBIL - ASCUNDE CELE DE CALENDAR ── */
+            /* ── GLASS PANEL PE MOBIL - ASCUNDE CALENDAR DESKTOP ── */
             .glass-panel.month-section { display: none !important; }
-
-            /* ── ACCORDION WRAP ASCUNS PE MOBIL ── */
             .accordion-wrap { display: none !important; }
+
+            /* ── BG LOGO MOBIL (mic, în colț, vizibil) ── */
+            .bg-logo {
+                display: block !important;
+                width: 55vw; height: 55vw;
+                margin-top: -27.5vw; margin-left: -27.5vw;
+                opacity: 0.07;
+            }
+
+            /* ── MONTH HEADER IN SLIDE ── */
+            .mobile-month-label {
+                font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--ssic-accent);
+                padding: 14px 0 10px;
+                opacity: 0.85;
+            }
         }
 
         /* CARDURI CALENDAR DESKTOP */
@@ -676,10 +778,15 @@
 
 <!-- MOBILE TOPBAR - vizibil doar pe mobil -->
 <div class="mobile-topbar" id="mobileTopbar" style="display:none;">
-    <img src="logo_2.png" alt="" class="mobile-topbar-logo" onerror="this.style.display='none'">
-    <span class="mobile-topbar-title">Campanie Vară 2026</span>
+    <img src="logo_2.png" alt="" class="mobile-topbar-logo" id="mobileEasterLogo" onerror="this.style.display='none'">
+    <span class="mobile-topbar-title" id="mobileEasterTitle">Campanie Vară 2026</span>
     <button class="mobile-topbar-btn" onclick="openProposalModal()">💡 Idei</button>
 </div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-bottom-nav" id="mobileBottomNav" style="display:none;">
+    <div class="mobile-bottom-nav-inner" id="bottomNavInner"></div>
+</nav>
 
 <div id="preloader">
     <div class="loader-content">
@@ -731,13 +838,14 @@
 
     <div id="calendar-root"></div>
 
-    <!-- MOBILE SWIPER - generat dinamic de JS -->
+    <!-- MOBILE CALENDAR - generat dinamic de JS -->
     <div id="mobile-calendar" style="display:none;">
-        <div class="month-tabs-nav" id="monthTabsNav"></div>
+        <!-- Filter strip orizontal -->
+        <div class="mobile-filter-strip" id="mobileFilterStrip"></div>
+        <!-- Swiper slides -->
         <div class="months-swiper-outer">
             <div class="months-swiper" id="monthsSwiper"></div>
         </div>
-        <div class="swiper-dots" id="swiperDots"></div>
     </div>
 </div>
 
@@ -802,11 +910,14 @@
     const IS_MOBILE = () => window.innerWidth <= 768;
     if (IS_MOBILE()) {
         document.getElementById('mobileTopbar').style.display = 'flex';
+        document.getElementById('mobileBottomNav').style.display = 'flex';
     }
     window.addEventListener('resize', () => {
-        document.getElementById('mobileTopbar').style.display = IS_MOBILE() ? 'flex' : 'none';
-        document.getElementById('mobile-calendar').style.display = IS_MOBILE() ? 'block' : 'none';
-        document.getElementById('calendar-root').style.display = IS_MOBILE() ? 'none' : 'block';
+        const mob = IS_MOBILE();
+        document.getElementById('mobileTopbar').style.display = mob ? 'flex' : 'none';
+        document.getElementById('mobileBottomNav').style.display = mob ? 'flex' : 'none';
+        document.getElementById('mobile-calendar').style.display = mob ? 'block' : 'none';
+        document.getElementById('calendar-root').style.display = mob ? 'none' : 'block';
     });
 
     // ── SWIPER STATE ──
@@ -817,41 +928,54 @@
         swiperIndex = index;
         const swiper = document.getElementById('monthsSwiper');
         swiper.style.transform = `translateX(-${index * 100}%)`;
-        document.querySelectorAll('.month-tab').forEach((t, i) => t.classList.toggle('active', i === index));
-        document.querySelectorAll('.swiper-dot').forEach((d, i) => d.classList.toggle('active', i === index));
-        // scroll tab into view
-        const tab = document.querySelectorAll('.month-tab')[index];
-        if (tab) tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        // update bottom nav tabs
+        document.querySelectorAll('.bottom-nav-tab[data-month-idx]').forEach((t, i) => {
+            t.classList.toggle('active', i === index);
+        });
     }
 
     function buildMobileSwiper(sortedGroups) {
         swiperGroups = sortedGroups;
-        const nav = document.getElementById('monthTabsNav');
+        const bottomNavInner = document.getElementById('bottomNavInner');
         const swiper = document.getElementById('monthsSwiper');
-        const dots = document.getElementById('swiperDots');
-        nav.innerHTML = ''; swiper.innerHTML = ''; dots.innerHTML = '';
+        bottomNavInner.innerHTML = '';
+        swiper.innerHTML = '';
+
+        // month icons mapping
+        const monthIcons = {
+            'Ianuarie': '❄️', 'Februarie': '🌸', 'Martie': '🌱', 'Aprilie': '🌼',
+            'Mai': '☀️', 'Iunie': '🏖️', 'Iulie': '🔥', 'August': '🌊',
+            'Septembrie': '🍂', 'Octombrie': '🎃', 'Noiembrie': '🌧️', 'Decembrie': '⛄',
+            'Idei creative': '💡'
+        };
 
         sortedGroups.forEach(([monthName, group], i) => {
-            // Tab
+            const shortName = monthName.split(' ')[0]; // just month name
+            const icon = monthIcons[shortName] || '📅';
+            const isIdei = monthName === 'Idei creative';
+
+            // Bottom nav tab
             const tab = document.createElement('button');
-            tab.className = 'month-tab' + (i === 0 ? ' active' : '');
-            tab.innerHTML = monthName.split(' ')[0] + `<span class="month-count">${group.tasks.length}</span>`;
+            tab.className = 'bottom-nav-tab' + (i === 0 ? ' active' : '') + (isIdei ? ' ideas-tab' : '');
+            tab.dataset.monthIdx = i;
             tab.onclick = () => goToSlide(i);
-            nav.appendChild(tab);
+            tab.innerHTML = `
+                <span class="bottom-nav-tab-icon">${icon}</span>
+                <span>${isIdei ? 'Idei' : shortName}</span>
+                <span class="bottom-nav-tab-count">${group.tasks.length}</span>`;
+            bottomNavInner.appendChild(tab);
 
             // Slide
             const slide = document.createElement('div');
             slide.className = 'month-slide';
+            const label = document.createElement('div');
+            label.className = 'mobile-month-label';
+            label.textContent = monthName;
             const grid = document.createElement('div');
             grid.className = 'calendar-grid';
+            slide.appendChild(label);
             slide.appendChild(grid);
             swiper.appendChild(slide);
-
-            // Dot
-            const dot = document.createElement('div');
-            dot.className = 'swiper-dot' + (i === 0 ? ' active' : '');
-            dot.onclick = () => goToSlide(i);
-            dots.appendChild(dot);
         });
 
         // Touch swipe
@@ -864,9 +988,7 @@
         swiper.addEventListener('touchmove', e => {
             const dx = e.touches[0].clientX - touchStartX;
             const dy = e.touches[0].clientY - touchStartY;
-            if (!isDragging && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
-                isDragging = true;
-            }
+            if (!isDragging && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) isDragging = true;
         }, { passive: true });
         swiper.addEventListener('touchend', e => {
             if (!isDragging) return;
@@ -883,7 +1005,9 @@
             const slide = document.getElementById('monthsSwiper').children[i];
             if (!slide) return;
             const grid = slide.querySelector('.calendar-grid');
+            if (!grid) return;
             grid.innerHTML = '';
+            const shortMonth = monthName.split(' ')[0];
             group.tasks.forEach(task => {
                 const tipClass = tipMap[task.tip] || 'card-nespecificat';
                 const dotClass = respMap[task.responsabil] || 'dot-patru';
@@ -897,6 +1021,7 @@
                 const card = document.createElement('div');
                 card.className = `event-card ${tipClass}`;
                 card.setAttribute('onclick', 'triggerTaskModal(this)');
+                card.dataset.monthName = shortMonth;
                 if (task.detalii && task.detalii.trim()) card.dataset.desc = task.detalii.trim();
                 card.innerHTML = `
                     <div class="card-top">
@@ -906,7 +1031,10 @@
                     <div class="event-title">${task.titlu}</div>
                     <div class="card-bottom">
                         <span class="type-label">${task.tip || 'Nespecificat'}</span>
-                        ${statusText ? `<span class="status-badge ${statusClass}">${statusText}</span>` : '<span></span>'}
+                        <div style="display:flex;align-items:center;gap:6px;">
+                            <span class="card-month-badge" style="display:none;">${shortMonth}</span>
+                            ${statusText ? `<span class="status-badge ${statusClass}">${statusText}</span>` : '<span></span>'}
+                        </div>
                     </div>`;
                 grid.appendChild(card);
             });
@@ -919,12 +1047,20 @@
     function toggleFilter(selector, pillElement) {
         const allCards = document.querySelectorAll('.event-card');
         const allPills = document.querySelectorAll('.legend-pill');
+        const allMfChips = document.querySelectorAll('.mf-chip');
 
         if (currentFilter === selector) {
-            allCards.forEach(card => card.classList.remove('dimmed-card'));
+            // Reset tutto
+            allCards.forEach(card => {
+                card.classList.remove('dimmed-card');
+                const mb = card.querySelector('.card-month-badge');
+                if (mb) mb.style.display = 'none';
+            });
             allPills.forEach(pill => {
-                pill.classList.remove('active-filter');
-                pill.classList.remove('dimmed-filter');
+                pill.classList.remove('active-filter', 'dimmed-filter');
+            });
+            allMfChips.forEach(chip => {
+                chip.classList.remove('active', 'dimmed');
             });
             currentFilter = null;
             currentPill = null;
@@ -934,6 +1070,7 @@
         currentFilter = selector;
         currentPill = pillElement;
 
+        // Desktop pills
         allPills.forEach(pill => {
             if (pill === pillElement) {
                 pill.classList.add('active-filter');
@@ -941,6 +1078,18 @@
             } else {
                 pill.classList.remove('active-filter');
                 pill.classList.add('dimmed-filter');
+            }
+        });
+
+        // Mobile chips
+        allMfChips.forEach(chip => {
+            const chipSel = chip.dataset.filterSel;
+            if (chipSel === selector) {
+                chip.classList.add('active');
+                chip.classList.remove('dimmed');
+            } else {
+                chip.classList.remove('active');
+                chip.classList.add('dimmed');
             }
         });
 
@@ -957,8 +1106,13 @@
                     const panel = card.closest('.glass-panel');
                     if (panel && panel.classList.contains('collapsed')) panel.classList.remove('collapsed');
                 }
+                // Show month badge on mobile when filtering
+                const mb = card.querySelector('.card-month-badge');
+                if (mb && IS_MOBILE()) mb.style.display = 'inline-block';
             } else {
                 card.classList.add('dimmed-card');
+                const mb = card.querySelector('.card-month-badge');
+                if (mb) mb.style.display = 'none';
             }
         });
     }
@@ -998,6 +1152,49 @@
         if (s.includes('suspendat')) return 'status-suspendat';
         if (s.includes('pauză') || s.includes('pauza')) return 'status-pauza';
         return '';
+    }
+
+    function buildMobileFilterStrip(tipMap, tipColorMap, respMap, respColorMap, tasks) {
+        const strip = document.getElementById('mobileFilterStrip');
+        if (!strip) return;
+        strip.innerHTML = '';
+
+        const usedTips = new Set();
+        const usedResp = new Set();
+        tasks.forEach(task => {
+            usedTips.add(tipMap[task.tip] || 'card-nespecificat');
+            const dc = respMap[task.responsabil] || null;
+            if (dc) usedResp.add(dc);
+        });
+
+        // Tip chips
+        ['card-postare', 'card-reel', 'card-story', 'card-mesaj', 'card-nespecificat'].forEach(cls => {
+            if (!usedTips.has(cls)) return;
+            const info = tipColorMap[cls];
+            const chip = document.createElement('div');
+            chip.className = 'mf-chip';
+            chip.dataset.filterSel = '.' + cls;
+            chip.innerHTML = `<span class="mf-chip-sq" style="background:${info.css};"></span>${info.label}`;
+            chip.onclick = function() { toggleFilter('.' + cls, null); };
+            strip.appendChild(chip);
+        });
+
+        // Visual divider
+        const div = document.createElement('div');
+        div.className = 'mf-divider';
+        strip.appendChild(div);
+
+        // Responsabil chips
+        ['dot-patru', 'dot-erica', 'dot-mihai', 'dot-mihai-erica', 'dot-betty'].forEach(cls => {
+            if (!usedResp.has(cls)) return;
+            const info = respColorMap[cls];
+            const chip = document.createElement('div');
+            chip.className = 'mf-chip';
+            chip.dataset.filterSel = '.' + cls;
+            chip.innerHTML = `<span class="mf-chip-dot ${cls}"></span>${info.label}`;
+            chip.onclick = function() { toggleFilter('.' + cls, null); };
+            strip.appendChild(chip);
+        });
     }
 
     function renderCalendar(tasks) {
@@ -1110,6 +1307,10 @@
             buildMobileSwiper(sortedGroups);
             populateMobileCards(sortedGroups, tipMap, respMap);
             swiperIndex = 0;
+
+            // Build mobile filter strip (chips orizontale)
+            buildMobileFilterStrip(tipMap, tipColorMap, respMap, respColorMap, tasks);
+
             // Re-aplică filtrul activ dacă există
             if (currentFilter) toggleFilter(currentFilter, currentPill);
             return;
@@ -1333,16 +1534,18 @@
     ];
 
     function drawOrbs(t) {
-        if(isMobile) return; 
-        orbs.forEach(orb => {
+        orbs.forEach((orb, idx) => {
+            // On mobile, only draw 2 orbs and at lower opacity
+            if (isMobile && idx > 1) return;
             const cx = (orb.x + Math.sin(t * orb.speed + orb.phase) * 0.12) * canvas.width;
             const cy = (orb.y + Math.cos(t * orb.speed * 0.7 + orb.phase) * 0.1) * canvas.height;
-            const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, orb.r);
-            grad.addColorStop(0, `rgba(${orb.color}, 0.07)`);
+            const r = isMobile ? orb.r * 0.7 : orb.r;
+            const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+            grad.addColorStop(0, `rgba(${orb.color}, ${isMobile ? 0.05 : 0.07})`);
             grad.addColorStop(1, `rgba(${orb.color}, 0)`);
             ctx.fillStyle = grad;
             ctx.beginPath();
-            ctx.arc(cx, cy, orb.r, 0, Math.PI * 2);
+            ctx.arc(cx, cy, r, 0, Math.PI * 2);
             ctx.fill();
         });
     }
@@ -1404,87 +1607,104 @@
     let fleeCount = 0;
     let isFleeing = false;
     
+    // Desktop elements
     const logoImg = document.getElementById('easterEggLogo');
     const mainTitle = document.getElementById('easterEggTitle');
     const headerEl = document.querySelector('header');
 
-    // Runaway Logo Game
-    logoImg.addEventListener('click', (e) => {
-        if (isFleeing) return;
-        logoClicks++;
-        if(logoClicks === 5) {
-            isFleeing = true;
-            logoClicks = 0;
-            fleeCount = 0;
-            
-            const rect = logoImg.getBoundingClientRect();
-            document.body.appendChild(logoImg);
-            logoImg.style.left = rect.left + 'px';
-            logoImg.style.top = rect.top + 'px';
-            logoImg.classList.add('fleeing');
-            
-            setTimeout(() => { moveFleeingLogo(); }, 50);
+    // Mobile elements
+    const mobileLogoEl = document.getElementById('mobileEasterLogo');
+    const mobileTitleEl = document.getElementById('mobileEasterTitle');
 
-            logoImg.addEventListener('mouseover', hoverFlee);
-            logoImg.addEventListener('touchstart', touchFlee, {passive: false});
-        }
-    });
-
-    function touchFlee(ev) {
-        ev.preventDefault();
-        hoverFlee();
+    // ── HELPER: get active logo element ──
+    function getActiveLogo() {
+        return IS_MOBILE() ? mobileLogoEl : logoImg;
+    }
+    function getActiveContainer() {
+        return IS_MOBILE() ? document.getElementById('mobileTopbar') : headerEl;
     }
 
-    function hoverFlee() {
+    // Runaway Logo — works on both mobile topbar logo and desktop logo
+    function attachLogoEasterEgg(el) {
+        if (!el) return;
+        el.addEventListener('click', (e) => {
+            if (isFleeing) return;
+            logoClicks++;
+            if (logoClicks === 5) {
+                isFleeing = true;
+                logoClicks = 0;
+                fleeCount = 0;
+                const rect = el.getBoundingClientRect();
+                document.body.appendChild(el);
+                el.style.left = rect.left + 'px';
+                el.style.top = rect.top + 'px';
+                el.classList.add('fleeing');
+                setTimeout(() => { moveFleeingLogo(el); }, 50);
+                el.addEventListener('mouseover', () => hoverFlee(el));
+                el.addEventListener('touchstart', (ev) => { ev.preventDefault(); hoverFlee(el); }, { passive: false });
+            }
+        });
+    }
+    attachLogoEasterEgg(logoImg);
+    attachLogoEasterEgg(mobileLogoEl);
+
+    function hoverFlee(el) {
         if (!isFleeing) return;
         fleeCount++;
-        
-        // Exact 4 touch-uri/fugi. La a 5-a se intoarce!
         if (fleeCount >= 5) {
-            endFleeing();
+            endFleeing(el);
         } else {
-            moveFleeingLogo();
+            moveFleeingLogo(el);
         }
     }
 
-    function moveFleeingLogo() {
+    function moveFleeingLogo(el) {
         const x = Math.max(20, Math.random() * (window.innerWidth - 120));
         const y = Math.max(20, Math.random() * (window.innerHeight - 120));
-        logoImg.style.left = `${x}px`;
-        logoImg.style.top = `${y}px`;
-        logoImg.style.transform = `scale(0.8) rotate(${Math.random() * 180 - 90}deg)`;
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.transform = `scale(0.8) rotate(${Math.random() * 180 - 90}deg)`;
     }
 
-    function endFleeing() {
+    function endFleeing(el) {
         isFleeing = false;
-        logoImg.removeEventListener('mouseover', hoverFlee);
-        logoImg.removeEventListener('touchstart', touchFlee);
-        
-        logoImg.classList.remove('fleeing');
-        logoImg.style.left = '';
-        logoImg.style.top = '';
-        logoImg.style.transform = '';
-        headerEl.insertBefore(logoImg, mainTitle);
+        el.classList.remove('fleeing');
+        el.style.left = '';
+        el.style.top = '';
+        el.style.transform = '';
+
+        // Return to correct container
+        const container = IS_MOBILE() ? document.getElementById('mobileTopbar') : headerEl;
+        if (IS_MOBILE()) {
+            container.insertBefore(el, container.firstChild);
+        } else {
+            container.insertBefore(el, mainTitle);
+        }
         
         // Confetti 🎉
         setTimeout(() => {
-            const rect = logoImg.getBoundingClientRect();
+            const rect = el.getBoundingClientRect();
             const startX = rect.left + rect.width / 2;
             const startY = rect.top + rect.height / 2;
-            
-            for(let i=0; i<40; i++) {
+            for (let i = 0; i < 40; i++) {
                 confettiArray.push(new Confetti(startX, startY));
             }
         }, 300);
     }
 
-    mainTitle.addEventListener('click', () => {
-        titleClicks++;
-        if(titleClicks === 7) {
-            createNumbersExplosion();
-            titleClicks = 0; 
-        }
-    });
+    // Title click easter egg — mobile + desktop
+    function attachTitleEasterEgg(el) {
+        if (!el) return;
+        el.addEventListener('click', () => {
+            titleClicks++;
+            if (titleClicks === 7) {
+                createNumbersExplosion();
+                titleClicks = 0;
+            }
+        });
+    }
+    attachTitleEasterEgg(mainTitle);
+    attachTitleEasterEgg(mobileTitleEl);
 
     function openProposalModal() { document.getElementById('proposalModal').classList.add('active'); }
     function triggerTaskModal(cardElement) {
