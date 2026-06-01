@@ -17,9 +17,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Campanie Vară 2026 - SSIC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap&font-display=swap');
 
         :root {
             --ssic-main: #1a0526;
@@ -71,6 +73,14 @@
             background-size: 300% 300%;
             background-color: var(--bg-base);
             animation: shiftGradient 25s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background: linear-gradient(135deg, #06010b 0%, #1a0526 50%, #06010b 100%);
+                background-size: 100% 100%;
+                animation: none;
+            }
         }
 
         @keyframes shiftGradient {
@@ -222,6 +232,7 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.2);
             outline: none;
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            touch-action: manipulation;
         }
 
         .action-btn:hover {
@@ -307,6 +318,11 @@
         }
         .glass-panel:hover::before { opacity: 1; }
 
+        @media (max-width: 768px) {
+            .glass-panel::before { display: none; }
+            .glass-panel { animation: none; opacity: 1; will-change: auto; }
+        }
+
         .glass-panel:nth-child(1) { animation-delay: 0.1s; }
         .glass-panel:nth-child(2) { animation-delay: 0.2s; }
         .glass-panel:nth-child(3) { animation-delay: 0.3s; }
@@ -327,7 +343,7 @@
             border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.1);
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-            cursor: pointer; user-select: none;
+            cursor: pointer; user-select: none; touch-action: manipulation;
         }
         .legend-pill:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
 
@@ -418,6 +434,8 @@
                 margin: 0 10px 16px !important;
                 padding: 16px !important;
                 border-radius: 16px !important;
+                backdrop-filter: blur(12px) saturate(130%) !important;
+                -webkit-backdrop-filter: blur(12px) saturate(130%) !important;
             }
             .legend-container-inner {
                 flex-direction: column !important;
@@ -454,6 +472,7 @@
                 backdrop-filter: blur(18px) saturate(140%);
                 -webkit-backdrop-filter: blur(18px) saturate(140%);
                 box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+                contain: layout style;
             }
 
             /* ── ACCORDION HEADER ── */
@@ -463,6 +482,7 @@
                 cursor: pointer;
                 user-select: none;
                 -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
                 gap: 12px;
             }
             .mob-acc-header-left {
@@ -500,7 +520,8 @@
             /* ── ACCORDION BODY ── */
             .mob-acc-body {
                 max-height: 0; overflow: hidden;
-                transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                will-change: max-height;
             }
             .mob-acc-item.open .mob-acc-body { max-height: 9999px; }
             .mob-acc-body-inner {
@@ -513,14 +534,15 @@
 
             .event-card {
                 border-radius: 14px; padding: 14px 16px; min-height: auto;
-                backdrop-filter: blur(14px) saturate(140%);
-                -webkit-backdrop-filter: blur(14px) saturate(140%);
+                backdrop-filter: blur(8px) saturate(120%);
+                -webkit-backdrop-filter: blur(8px) saturate(120%);
                 box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
                 border: 1px solid rgba(255, 255, 255, 0.12) !important;
                 border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
                 /* border-left colorat e setat prin clasele card-postare etc. */
                 transform: none !important;
-                transition: opacity 0.2s ease, filter 0.2s ease, transform 0.15s ease !important;
+                transition: opacity 0.15s ease, filter 0.15s ease, transform 0.12s ease !important;
+                contain: layout style;
             }
             /* Restaurează border-left colorat pe mobil */
             .event-card.card-postare { border-left: 4px solid var(--color-postare) !important; }
@@ -589,7 +611,7 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%);
             cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
-            z-index: 2; overflow: hidden;
+            z-index: 2; overflow: hidden; touch-action: manipulation;
         }
 
         .event-card.dimmed-card {
@@ -615,6 +637,8 @@
 
         /* FIX ALINIERE ȘI UMBRE CASETE PE MOBIL */
         @media (max-width: 768px) {
+            .event-card::after { display: none !important; }
+            
             .event-card:hover:not(.dimmed-card) {
                 transform: none !important;
             }
@@ -695,12 +719,13 @@
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-box {
             position: relative; border-radius: 20px; padding: 26px; width: 92%; max-width: 420px;
-            transform: scale(0.95) translateY(20px); opacity: 0; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: scale(0.95) translateY(20px); opacity: 0; transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
             display: flex; flex-direction: column; align-items: center;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)), rgba(30, 8, 45, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.15); border-top: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(30px) saturate(150%); -webkit-backdrop-filter: blur(30px) saturate(150%);
+            max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
         }
         .modal-overlay.active .modal-box { transform: scale(1) translateY(0); opacity: 1; }
         
@@ -729,6 +754,7 @@
             padding: 14px 24px; font-size: 0.95rem; font-weight: 800; border-radius: 12px;
             cursor: pointer; box-shadow: 0 6px 20px rgba(245, 186, 66, 0.3), inset 0 1px 2px rgba(255,255,255,0.4);
             width: 100%; margin-top: 10px; transition: transform 0.2s ease, box-shadow 0.2s;
+            touch-action: manipulation;
         }
         .submit-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 10px 25px rgba(245, 186, 66, 0.4), inset 0 1px 2px rgba(255,255,255,0.5); }
         .submit-btn:active { transform: scale(0.98); }
@@ -862,8 +888,10 @@
             setTimeout(() => { preloader.style.display = 'none'; }, 950);
         }
     };
+    // On mobile, hide preloader faster (2s vs 2.8s) for better perceived performance
+    const preloaderDelay = window.innerWidth <= 768 ? 1800 : 2800;
     window.addEventListener('load', () => { 
-        setTimeout(hidePreloader, 2800); 
+        setTimeout(hidePreloader, preloaderDelay); 
         syncTasksWithSheet(); // Sincronizare la încărcare
     });
     setTimeout(hidePreloader, 6000); 
@@ -872,11 +900,17 @@
 
     // ── MOBILE DETECTION ──
     const IS_MOBILE = () => window.innerWidth <= 768;
+    
+    // Debounced resize handler for performance
+    let resizeTimer;
     window.addEventListener('resize', () => {
-        const mob = IS_MOBILE();
-        document.getElementById('mobile-calendar').style.display = mob ? 'block' : 'none';
-        document.getElementById('calendar-root').style.display = mob ? 'none' : 'block';
-    });
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const mob = IS_MOBILE();
+            document.getElementById('mobile-calendar').style.display = mob ? 'block' : 'none';
+            document.getElementById('calendar-root').style.display = mob ? 'none' : 'block';
+        }, 150);
+    }, { passive: true });
 
     // ── TOPBAR SCROLL COLLAPSE - dezactivat (topbar ascuns pe mobil) ──
 
@@ -1385,19 +1419,23 @@
     const ctx = canvas.getContext('2d');
     
     const numStarsDesktop = 1500; 
-    const numStarsMobile = 400; 
+    const numStarsMobile = 300; 
     const maxStars = Math.max(numStarsDesktop, numStarsMobile);
     
     let numbersArray = []; 
     let confettiArray = [];
     let isMobile = window.innerWidth <= 768;
 
+    // Mobile frame throttle: target ~30fps on mobile, ~60fps on desktop
+    let lastFrameTime = 0;
+    const MOBILE_FRAME_INTERVAL = 33; // ~30fps
+
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         isMobile = window.innerWidth <= 768;
     }
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas, { passive: true });
     resizeCanvas();
 
     const pX = new Float32Array(maxStars);
@@ -1512,14 +1550,13 @@
     ];
 
     function drawOrbs(t) {
-        orbs.forEach((orb, idx) => {
-            // On mobile, only draw 2 orbs and at lower opacity
-            if (isMobile && idx > 1) return;
+        if (isMobile) return; // Skip orbs entirely on mobile - major perf gain
+        orbs.forEach((orb) => {
             const cx = (orb.x + Math.sin(t * orb.speed + orb.phase) * 0.12) * canvas.width;
             const cy = (orb.y + Math.cos(t * orb.speed * 0.7 + orb.phase) * 0.1) * canvas.height;
-            const r = isMobile ? orb.r * 0.7 : orb.r;
+            const r = orb.r;
             const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-            grad.addColorStop(0, `rgba(${orb.color}, ${isMobile ? 0.05 : 0.07})`);
+            grad.addColorStop(0, `rgba(${orb.color}, 0.07)`);
             grad.addColorStop(1, `rgba(${orb.color}, 0)`);
             ctx.fillStyle = grad;
             ctx.beginPath();
@@ -1528,33 +1565,51 @@
         });
     }
 
-    function animateMasterEngine(t = 0) {
+    function animateMasterEngine(timestamp = 0) {
+        // Throttle on mobile to ~30fps
+        if (isMobile && timestamp - lastFrameTime < MOBILE_FRAME_INTERVAL) {
+            requestAnimationFrame(animateMasterEngine);
+            return;
+        }
+        lastFrameTime = timestamp;
+
+        const t = timestamp;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         drawOrbs(t);
 
         const activeStars = isMobile ? numStarsMobile : numStarsDesktop;
 
-        for (let i = 0; i < activeStars; i++) {
-            if (!isMobile) {
+        if (isMobile) {
+            // Mobile: batch stars by alpha bucket to minimize fillStyle changes
+            for (let i = 0; i < activeStars; i++) {
+                pPhase[i] += 0.018;
+                const sinValue = Math.sin(pPhase[i]);
+                const currentAlpha = Math.max(0, sinValue) * pAlpha[i] * 1.2;
+                if (currentAlpha > 0.04) {
+                    ctx.globalAlpha = currentAlpha;
+                    ctx.fillStyle = `rgba(186, 144, 227, 1)`;
+                    ctx.fillRect(pX[i], pY[i], pSize[i] * 1.5, pSize[i] * 1.5);
+                }
+            }
+            ctx.globalAlpha = 1;
+        } else {
+            for (let i = 0; i < activeStars; i++) {
                 pX[i] += pSpeedX[i];
                 pY[i] += pSpeedY[i];
                 if (pX[i] < 0) pX[i] = canvas.width;
                 if (pX[i] > canvas.width) pX[i] = 0;
                 if (pY[i] < 0) pY[i] = canvas.height;
                 if (pY[i] > canvas.height) pY[i] = 0;
-            }
-            
-            pPhase[i] += isMobile ? 0.02 : 0.01;
+                
+                pPhase[i] += 0.01;
+                const sinValue = Math.sin(pPhase[i]);
+                const currentAlpha = pAlpha[i] * (0.4 + sinValue * 0.6);
 
-            let sinValue = Math.sin(pPhase[i]);
-            let currentAlpha = isMobile 
-                ? Math.max(0, sinValue) * pAlpha[i] * 1.2 
-                : pAlpha[i] * (0.4 + sinValue * 0.6);
-
-            if (currentAlpha > 0.02) {
-                ctx.fillStyle = `rgba(186, 144, 227, ${currentAlpha})`;
-                ctx.fillRect(pX[i], pY[i], pSize[i] * (isMobile ? 1.5 : 1), pSize[i] * (isMobile ? 1.5 : 1));
+                if (currentAlpha > 0.02) {
+                    ctx.fillStyle = `rgba(186, 144, 227, ${currentAlpha})`;
+                    ctx.fillRect(pX[i], pY[i], pSize[i], pSize[i]);
+                }
             }
         }
 
@@ -1577,7 +1632,7 @@
         requestAnimationFrame(animateMasterEngine);
     }
     initParticles();
-    animateMasterEngine();
+    requestAnimationFrame(animateMasterEngine);
 
     // EASTER EGGS
     let logoClicks = 0;
