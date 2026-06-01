@@ -351,119 +351,95 @@
             gap: 20px;
         }
 
-        /* ── MOBILE BOTTOM NAV BAR ── */
-        .mobile-bottom-nav {
-            display: none;
-            position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-            background: rgba(8, 2, 14, 0.88);
-            backdrop-filter: blur(24px) saturate(200%);
-            -webkit-backdrop-filter: blur(24px) saturate(200%);
-            border-top: 1px solid rgba(168, 85, 247, 0.18);
-            padding: 0 4px;
-            padding-bottom: env(safe-area-inset-bottom, 0px);
-            height: 72px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-        .mobile-bottom-nav::-webkit-scrollbar { display: none; }
+        /* ── NO BOTTOM NAV ── */
+        .mobile-bottom-nav { display: none !important; }
 
-        .mobile-bottom-nav-inner {
-            display: flex;
-            align-items: stretch;
-            height: 100%;
-            gap: 0;
-            min-width: max-content;
-        }
-
-        .bottom-nav-tab {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 3px;
-            min-width: 64px; padding: 0 10px;
-            cursor: pointer; border: none; background: none;
-            color: rgba(255,255,255,0.35);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.62rem; font-weight: 700;
-            letter-spacing: 0.01em;
-            white-space: nowrap;
-            transition: color 0.2s ease;
-            position: relative;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .bottom-nav-tab.active { color: #ffffff; }
-        .bottom-nav-tab.active::after {
-            content: '';
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 32px; height: 3px; border-radius: 0 0 4px 4px;
-            background: linear-gradient(90deg, #a855f7, #f5ba42);
-        }
-        .bottom-nav-tab-icon {
-            width: 22px; height: 22px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; line-height: 1;
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .bottom-nav-tab.active .bottom-nav-tab-icon { transform: scale(1.15); }
-        .bottom-nav-tab-count {
-            position: absolute; top: 8px; right: 6px;
-            min-width: 16px; height: 16px;
-            background: rgba(168, 85, 247, 0.7);
-            border-radius: 8px; font-size: 0.55rem; font-weight: 800;
-            display: flex; align-items: center; justify-content: center;
-            padding: 0 3px;
-            color: #fff;
-        }
-        .bottom-nav-tab.ideas-tab { color: rgba(0, 210, 255, 0.5); }
-        .bottom-nav-tab.ideas-tab.active { color: #00d2ff; }
-        .bottom-nav-tab.ideas-tab.active::after { background: linear-gradient(90deg, #00d2ff, #a855f7); }
+        /* ── MOBILE TOPBAR (hidden on desktop) ── */
+        .mobile-topbar { display: none; }
 
         @media (max-width: 768px) {
             /* ── BODY MOBIL ── */
-            body {
-                padding: 0;
-                padding-bottom: 84px;
-            }
+            body { padding: 0; padding-bottom: 24px; }
 
-            .mobile-bottom-nav { display: flex; }
-
-            /* ── TOPBAR MOBIL ── */
+            /* ── TOPBAR STICKY ── */
             .mobile-topbar {
                 position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-                height: 62px;
                 display: flex; align-items: center; justify-content: space-between;
                 padding: 0 16px;
-                background: rgba(6, 1, 11, 0.82);
+                background: rgba(6, 1, 11, 0.85);
                 backdrop-filter: blur(24px) saturate(180%);
                 -webkit-backdrop-filter: blur(24px) saturate(180%);
-                border-bottom: 1px solid rgba(168, 85, 247, 0.12);
+                border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+                transition: height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                            padding 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+                overflow: hidden;
+                height: 72px;
+            }
+            /* Expanded state (default) */
+            .mobile-topbar.topbar-expanded {
+                height: 72px;
+                padding: 0 16px;
+            }
+            /* Collapsed into pill */
+            .mobile-topbar.topbar-collapsed {
+                height: 44px;
+                padding: 0 14px;
             }
             .mobile-topbar-logo {
                 height: 44px; width: 44px; object-fit: contain;
                 filter: drop-shadow(0 0 10px rgba(245,186,66,0.55));
                 cursor: pointer;
-                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                            height 0.32s ease, width 0.32s ease;
                 flex-shrink: 0;
+            }
+            .mobile-topbar.topbar-collapsed .mobile-topbar-logo {
+                height: 28px; width: 28px;
             }
             .mobile-topbar-logo:active { transform: scale(0.88) rotate(-8deg); }
+
             .mobile-topbar-title {
-                font-size: 1.05rem; font-weight: 800; letter-spacing: -0.02em;
+                font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em;
                 color: #ffffff;
                 flex: 1; text-align: center; padding: 0 12px;
-                cursor: pointer;
-                user-select: none;
+                cursor: pointer; user-select: none;
+                transition: font-size 0.32s ease, opacity 0.32s ease;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
+            .mobile-topbar.topbar-collapsed .mobile-topbar-title {
+                font-size: 0.8rem;
+                opacity: 0.75;
+            }
+
+            /* Propuneri button — frosted glass, purple + gold glow */
             .mobile-topbar-btn {
-                background: rgba(0, 210, 255, 0.12);
-                border: 1px solid rgba(0, 210, 255, 0.35);
-                color: #00d2ff; padding: 7px 13px; border-radius: 20px;
-                font-size: 0.7rem; font-weight: 700; cursor: pointer;
+                background: linear-gradient(135deg, rgba(168, 85, 247, 0.28), rgba(168, 85, 247, 0.12));
+                border: 1px solid rgba(168, 85, 247, 0.5);
+                border-top: 1px solid rgba(168, 85, 247, 0.7);
+                color: #e2c4ff;
+                padding: 7px 14px;
+                border-radius: 20px;
+                font-size: 0.72rem; font-weight: 700;
+                cursor: pointer;
                 font-family: 'Plus Jakarta Sans', sans-serif;
-                backdrop-filter: blur(10px);
-                transition: transform 0.15s ease, background 0.2s ease;
+                backdrop-filter: blur(12px) saturate(1.4);
+                -webkit-backdrop-filter: blur(12px) saturate(1.4);
+                box-shadow: 0 0 12px rgba(168, 85, 247, 0.35), 0 0 20px rgba(245, 186, 66, 0.12), inset 0 1px 1px rgba(255,255,255,0.2);
+                transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
                 flex-shrink: 0;
+                white-space: nowrap;
+                outline: none;
             }
-            .mobile-topbar-btn:active { transform: scale(0.92); background: rgba(0, 210, 255, 0.22); }
+            .mobile-topbar-btn:active {
+                transform: scale(0.92);
+                box-shadow: 0 0 18px rgba(168, 85, 247, 0.5), 0 0 28px rgba(245, 186, 66, 0.22);
+            }
+            .mobile-topbar.topbar-collapsed .mobile-topbar-btn {
+                padding: 5px 10px;
+                font-size: 0.66rem;
+            }
 
             /* ── EASTER EGG LOGO PE MOBIL ── */
             .mobile-topbar-logo.fleeing {
@@ -478,16 +454,14 @@
 
             /* ── CONTAINER MOBIL ── */
             .container {
-                padding-top: 70px;
+                padding-top: 80px;
                 width: 100%; max-width: 100%;
             }
 
-            /* ── FILTER BAR (înlocuiește legenda grea) ── */
-            .glass-panel:not(.month-section) {
-                display: none !important; /* legenda desktop ascunsă */
-            }
+            /* ── LEGEND PANEL ASCUNS PE MOBIL ── */
+            .glass-panel:not(.month-section) { display: none !important; }
 
-            /* ── MOBILE FILTER STRIP ── */
+            /* ── FILTER STRIP ORIZONTAL ── */
             .mobile-filter-strip {
                 display: flex;
                 gap: 7px;
@@ -522,44 +496,86 @@
                 box-shadow: 0 0 12px rgba(255,255,255,0.08);
             }
             .mf-chip.dimmed { opacity: 0.32; filter: grayscale(60%); }
-            .mf-chip-dot {
-                width: 8px; height: 8px; border-radius: 50%;
-                flex-shrink: 0;
-                border: 1.5px solid rgba(255,255,255,0.8);
-            }
-            .mf-chip-sq {
-                width: 8px; height: 8px; border-radius: 2px;
-                flex-shrink: 0;
-            }
-            /* Separator vizual între tip și resp */
-            .mf-divider {
-                width: 1px; background: rgba(255,255,255,0.15);
-                margin: 0 2px; flex-shrink: 0;
-                align-self: stretch; border-radius: 1px;
+            .mf-chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; border: 1.5px solid rgba(255,255,255,0.8); }
+            .mf-chip-sq { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+            .mf-divider { width: 1px; background: rgba(255,255,255,0.15); margin: 0 2px; flex-shrink: 0; align-self: stretch; border-radius: 1px; }
+
+            /* ── DESKTOP MONTH SECTIONS ASCUNSE ── */
+            .glass-panel.month-section { display: none !important; }
+
+            /* ── MOBILE ACCORDION CONTAINER ── */
+            .mob-accordion { display: flex; flex-direction: column; gap: 0; padding: 0 10px 16px; }
+
+            /* ── ACCORDION ITEM ── */
+            .mob-acc-item {
+                margin-bottom: 8px;
+                border-radius: 16px;
+                overflow: hidden;
+                background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)), rgba(20, 5, 30, 0.55);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-top: 1px solid rgba(255,255,255,0.18);
+                backdrop-filter: blur(18px) saturate(140%);
+                -webkit-backdrop-filter: blur(18px) saturate(140%);
+                box-shadow: 0 4px 16px rgba(0,0,0,0.4);
             }
 
-            /* ── MOBILE CALENDAR SCROLL VIEW ── */
-            .month-section { display: none !important; }
+            /* ── ACCORDION HEADER ── */
+            .mob-acc-header {
+                display: flex; align-items: center; justify-content: space-between;
+                padding: 14px 16px;
+                cursor: pointer;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
+                gap: 12px;
+            }
+            .mob-acc-header-left {
+                display: flex; align-items: center; gap: 10px;
+                flex: 1; min-width: 0;
+            }
+            .mob-acc-month-bar {
+                width: 4px; height: 28px; border-radius: 2px; flex-shrink: 0;
+                background: var(--ssic-accent);
+            }
+            .mob-acc-month-name {
+                font-size: 1rem; font-weight: 800; letter-spacing: -0.01em; color: #fff;
+            }
+            .mob-acc-count {
+                font-size: 0.65rem; font-weight: 700;
+                color: rgba(255,255,255,0.4);
+                background: rgba(255,255,255,0.07);
+                padding: 2px 8px; border-radius: 10px;
+                letter-spacing: 0.03em;
+                flex-shrink: 0;
+            }
+            .mob-acc-chevron {
+                width: 18px; height: 18px; flex-shrink: 0;
+                display: flex; align-items: center; justify-content: center;
+                color: rgba(255,255,255,0.35);
+                transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), color 0.2s ease;
+            }
+            .mob-acc-chevron svg { width: 14px; height: 14px; }
+            .mob-acc-item.open .mob-acc-chevron {
+                transform: rotate(180deg);
+                color: var(--ssic-accent);
+            }
+            .mob-acc-item.open .mob-acc-month-name { color: var(--ssic-accent); }
 
-            /* ── SWIPER OUTER ── */
-            .months-swiper-outer { overflow: hidden; width: 100%; }
-            .months-swiper {
-                display: flex;
-                transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-                will-change: transform;
+            /* ── ACCORDION BODY ── */
+            .mob-acc-body {
+                max-height: 0; overflow: hidden;
+                transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
             }
-            .month-slide {
-                flex: 0 0 100%; width: 100%;
-                padding: 0 12px 12px;
+            .mob-acc-item.open .mob-acc-body { max-height: 9999px; }
+            .mob-acc-body-inner {
+                display: flex; flex-direction: column; gap: 8px;
+                padding: 0 12px 14px;
             }
-            .month-tabs-nav { display: none; } /* ascuns — folosim bottom nav */
-            .swiper-dots { display: none; }   /* ascuns — info în bottom nav */
 
             /* ── CARDURI MOBIL ── */
             .calendar-grid { display: flex; flex-direction: column; gap: 9px; }
 
             .event-card {
-                border-radius: 14px; padding: 14px 16px; min-height: auto;
+                border-radius: 12px; padding: 13px 14px; min-height: auto;
                 backdrop-filter: blur(14px) saturate(140%);
                 -webkit-backdrop-filter: blur(14px) saturate(140%);
                 box-shadow: none;
@@ -567,18 +583,18 @@
                 transition: opacity 0.2s ease, filter 0.2s ease !important;
             }
             .event-card::after { display: none; }
-            .event-card:active:not(.dimmed-card) { opacity: 0.7; transform: scale(0.98) !important; }
+            .event-card:active:not(.dimmed-card) { opacity: 0.72; transform: scale(0.98) !important; }
             .event-card.dimmed-card { opacity: 0.14; filter: grayscale(100%); transform: none !important; }
 
-            .card-top { margin-bottom: 8px; }
-            .date-badge { font-size: 1rem; }
-            .event-title { font-size: 0.9rem; margin-bottom: 10px; }
-            .card-bottom { padding-top: 10px; }
-            .type-label { font-size: 0.65rem; }
+            .card-top { margin-bottom: 7px; }
+            .date-badge { font-size: 0.95rem; }
+            .event-title { font-size: 0.88rem; margin-bottom: 9px; }
+            .card-bottom { padding-top: 9px; }
+            .type-label { font-size: 0.64rem; }
 
             /* Luna badge pe card (apare la filtrare) */
             .card-month-badge {
-                font-size: 0.6rem; font-weight: 700; 
+                font-size: 0.6rem; font-weight: 700;
                 color: rgba(255,255,255,0.45);
                 background: rgba(255,255,255,0.07);
                 padding: 2px 7px; border-radius: 8px;
@@ -587,25 +603,12 @@
                 white-space: nowrap;
             }
 
-            /* ── GLASS PANEL PE MOBIL - ASCUNDE CALENDAR DESKTOP ── */
-            .glass-panel.month-section { display: none !important; }
-            .accordion-wrap { display: none !important; }
-
-            /* ── BG LOGO MOBIL (mic, în colț, vizibil) ── */
+            /* ── BG LOGO MOBIL ── */
             .bg-logo {
                 display: block !important;
                 width: 55vw; height: 55vw;
                 margin-top: -27.5vw; margin-left: -27.5vw;
-                opacity: 0.07;
-            }
-
-            /* ── MONTH HEADER IN SLIDE ── */
-            .mobile-month-label {
-                font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--ssic-accent);
-                padding: 14px 0 10px;
-                opacity: 0.85;
+                opacity: 0.06;
             }
         }
 
@@ -780,11 +783,11 @@
 <div class="mobile-topbar" id="mobileTopbar" style="display:none;">
     <img src="logo_2.png" alt="" class="mobile-topbar-logo" id="mobileEasterLogo" onerror="this.style.display='none'">
     <span class="mobile-topbar-title" id="mobileEasterTitle">Campanie Vară 2026</span>
-    <button class="mobile-topbar-btn" onclick="openProposalModal()">💡 Idei</button>
+    <button class="mobile-topbar-btn" onclick="openProposalModal()">Propuneri</button>
 </div>
 
-<!-- MOBILE BOTTOM NAV -->
-<nav class="mobile-bottom-nav" id="mobileBottomNav" style="display:none;">
+<!-- MOBILE BOTTOM NAV - unused, kept for backward compatibility -->
+<nav class="mobile-bottom-nav" id="mobileBottomNav" style="display:none!important;">
     <div class="mobile-bottom-nav-inner" id="bottomNavInner"></div>
 </nav>
 
@@ -815,7 +818,7 @@
 
 <div class="container">
     <div class="floating-controls">
-        <button class="action-btn" onclick="openProposalModal()">💡 Idei noi SSIC</button>
+        <button class="action-btn" onclick="openProposalModal()">Propuneri</button>
     </div>
 
     <header>
@@ -838,14 +841,12 @@
 
     <div id="calendar-root"></div>
 
-    <!-- MOBILE CALENDAR - generat dinamic de JS -->
+    <!-- MOBILE CALENDAR - accordion, generat dinamic de JS -->
     <div id="mobile-calendar" style="display:none;">
         <!-- Filter strip orizontal -->
         <div class="mobile-filter-strip" id="mobileFilterStrip"></div>
-        <!-- Swiper slides -->
-        <div class="months-swiper-outer">
-            <div class="months-swiper" id="monthsSwiper"></div>
-        </div>
+        <!-- Accordion -->
+        <div class="mob-accordion" id="mobAccordion"></div>
     </div>
 </div>
 
@@ -910,104 +911,76 @@
     const IS_MOBILE = () => window.innerWidth <= 768;
     if (IS_MOBILE()) {
         document.getElementById('mobileTopbar').style.display = 'flex';
-        document.getElementById('mobileBottomNav').style.display = 'flex';
     }
     window.addEventListener('resize', () => {
         const mob = IS_MOBILE();
         document.getElementById('mobileTopbar').style.display = mob ? 'flex' : 'none';
-        document.getElementById('mobileBottomNav').style.display = mob ? 'flex' : 'none';
         document.getElementById('mobile-calendar').style.display = mob ? 'block' : 'none';
         document.getElementById('calendar-root').style.display = mob ? 'none' : 'block';
     });
 
-    // ── SWIPER STATE ──
-    let swiperIndex = 0;
-    let swiperGroups = [];
-
-    function goToSlide(index) {
-        swiperIndex = index;
-        const swiper = document.getElementById('monthsSwiper');
-        swiper.style.transform = `translateX(-${index * 100}%)`;
-        // update bottom nav tabs
-        document.querySelectorAll('.bottom-nav-tab[data-month-idx]').forEach((t, i) => {
-            t.classList.toggle('active', i === index);
-        });
-    }
-
-    function buildMobileSwiper(sortedGroups) {
-        swiperGroups = sortedGroups;
-        const bottomNavInner = document.getElementById('bottomNavInner');
-        const swiper = document.getElementById('monthsSwiper');
-        bottomNavInner.innerHTML = '';
-        swiper.innerHTML = '';
-
-        // month icons mapping
-        const monthIcons = {
-            'Ianuarie': '❄️', 'Februarie': '🌸', 'Martie': '🌱', 'Aprilie': '🌼',
-            'Mai': '☀️', 'Iunie': '🏖️', 'Iulie': '🔥', 'August': '🌊',
-            'Septembrie': '🍂', 'Octombrie': '🎃', 'Noiembrie': '🌧️', 'Decembrie': '⛄',
-            'Idei creative': '💡'
-        };
-
-        sortedGroups.forEach(([monthName, group], i) => {
-            const shortName = monthName.split(' ')[0]; // just month name
-            const icon = monthIcons[shortName] || '📅';
-            const isIdei = monthName === 'Idei creative';
-
-            // Bottom nav tab
-            const tab = document.createElement('button');
-            tab.className = 'bottom-nav-tab' + (i === 0 ? ' active' : '') + (isIdei ? ' ideas-tab' : '');
-            tab.dataset.monthIdx = i;
-            tab.onclick = () => goToSlide(i);
-            tab.innerHTML = `
-                <span class="bottom-nav-tab-icon">${icon}</span>
-                <span>${isIdei ? 'Idei' : shortName}</span>
-                <span class="bottom-nav-tab-count">${group.tasks.length}</span>`;
-            bottomNavInner.appendChild(tab);
-
-            // Slide
-            const slide = document.createElement('div');
-            slide.className = 'month-slide';
-            const label = document.createElement('div');
-            label.className = 'mobile-month-label';
-            label.textContent = monthName;
-            const grid = document.createElement('div');
-            grid.className = 'calendar-grid';
-            slide.appendChild(label);
-            slide.appendChild(grid);
-            swiper.appendChild(slide);
-        });
-
-        // Touch swipe
-        let touchStartX = 0, touchStartY = 0, isDragging = false;
-        swiper.addEventListener('touchstart', e => {
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-            isDragging = false;
-        }, { passive: true });
-        swiper.addEventListener('touchmove', e => {
-            const dx = e.touches[0].clientX - touchStartX;
-            const dy = e.touches[0].clientY - touchStartY;
-            if (!isDragging && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) isDragging = true;
-        }, { passive: true });
-        swiper.addEventListener('touchend', e => {
-            if (!isDragging) return;
-            const dx = e.changedTouches[0].clientX - touchStartX;
-            if (Math.abs(dx) > 40) {
-                if (dx < 0 && swiperIndex < sortedGroups.length - 1) goToSlide(swiperIndex + 1);
-                else if (dx > 0 && swiperIndex > 0) goToSlide(swiperIndex - 1);
+    // ── TOPBAR SCROLL COLLAPSE ──
+    (function() {
+        const topbar = document.getElementById('mobileTopbar');
+        let lastY = 0;
+        window.addEventListener('scroll', () => {
+            if (!IS_MOBILE()) return;
+            const y = window.scrollY;
+            if (y > 60) {
+                topbar.classList.add('topbar-collapsed');
+                topbar.classList.remove('topbar-expanded');
+            } else {
+                topbar.classList.remove('topbar-collapsed');
+                topbar.classList.add('topbar-expanded');
             }
+            lastY = y;
         }, { passive: true });
-    }
+        topbar.classList.add('topbar-expanded');
+    })();
 
-    function populateMobileCards(sortedGroups, tipMap, respMap) {
+    // ── ACCORDION BUILDER ──
+    function buildMobileAccordion(sortedGroups, tipMap, respMap) {
+        const accordion = document.getElementById('mobAccordion');
+        if (!accordion) return;
+        accordion.innerHTML = '';
+
         sortedGroups.forEach(([monthName, group], i) => {
-            const slide = document.getElementById('monthsSwiper').children[i];
-            if (!slide) return;
-            const grid = slide.querySelector('.calendar-grid');
-            if (!grid) return;
-            grid.innerHTML = '';
-            const shortMonth = monthName.split(' ')[0];
+            const shortName = monthName.split(' ')[0];
+            const isFirst = i === 0;
+
+            const item = document.createElement('div');
+            item.className = 'mob-acc-item' + (isFirst ? ' open' : '');
+            item.dataset.accIdx = i;
+
+            // Header
+            const header = document.createElement('div');
+            header.className = 'mob-acc-header';
+            header.setAttribute('role', 'button');
+            header.setAttribute('aria-expanded', isFirst ? 'true' : 'false');
+            header.innerHTML = `
+                <div class="mob-acc-header-left">
+                    <div class="mob-acc-month-bar"></div>
+                    <span class="mob-acc-month-name">${monthName}</span>
+                    <span class="mob-acc-count">${group.tasks.length}</span>
+                </div>
+                <span class="mob-acc-chevron">
+                    <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>`;
+
+            header.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+                item.classList.toggle('open', !isOpen);
+                header.setAttribute('aria-expanded', String(!isOpen));
+            });
+
+            // Body
+            const body = document.createElement('div');
+            body.className = 'mob-acc-body';
+            const bodyInner = document.createElement('div');
+            bodyInner.className = 'mob-acc-body-inner';
+
             group.tasks.forEach(task => {
                 const tipClass = tipMap[task.tip] || 'card-nespecificat';
                 const dotClass = respMap[task.responsabil] || 'dot-patru';
@@ -1018,10 +991,11 @@
                 }
                 const statusClass = getStatusClass(task.status || '');
                 const statusText = task.status ? task.status.trim() : '';
+
                 const card = document.createElement('div');
                 card.className = `event-card ${tipClass}`;
                 card.setAttribute('onclick', 'triggerTaskModal(this)');
-                card.dataset.monthName = shortMonth;
+                card.dataset.monthName = shortName;
                 if (task.detalii && task.detalii.trim()) card.dataset.desc = task.detalii.trim();
                 card.innerHTML = `
                     <div class="card-top">
@@ -1032,12 +1006,17 @@
                     <div class="card-bottom">
                         <span class="type-label">${task.tip || 'Nespecificat'}</span>
                         <div style="display:flex;align-items:center;gap:6px;">
-                            <span class="card-month-badge" style="display:none;">${shortMonth}</span>
+                            <span class="card-month-badge" style="display:none;">${shortName}</span>
                             ${statusText ? `<span class="status-badge ${statusClass}">${statusText}</span>` : '<span></span>'}
                         </div>
                     </div>`;
-                grid.appendChild(card);
+                bodyInner.appendChild(card);
             });
+
+            body.appendChild(bodyInner);
+            item.appendChild(header);
+            item.appendChild(body);
+            accordion.appendChild(item);
         });
     }
 
@@ -1115,6 +1094,13 @@
                 if (mb) mb.style.display = 'none';
             }
         });
+
+        // On mobile: open all accordion items so filtered cards are visible
+        if (IS_MOBILE()) {
+            document.querySelectorAll('.mob-acc-item').forEach(item => {
+                item.classList.add('open');
+            });
+        }
     }
 
     document.querySelectorAll('.dynamic-spotlight').forEach(panel => {
@@ -1304,9 +1290,9 @@
             root.style.display = 'none';
             const mobileCalendar = document.getElementById('mobile-calendar');
             mobileCalendar.style.display = 'block';
-            buildMobileSwiper(sortedGroups);
-            populateMobileCards(sortedGroups, tipMap, respMap);
-            swiperIndex = 0;
+
+            // Build accordion
+            buildMobileAccordion(sortedGroups, tipMap, respMap);
 
             // Build mobile filter strip (chips orizontale)
             buildMobileFilterStrip(tipMap, tipColorMap, respMap, respColorMap, tasks);
