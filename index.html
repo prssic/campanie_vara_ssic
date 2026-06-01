@@ -204,6 +204,9 @@
             animation: floatIn 0.8s ease-out forwards;
         }
 
+        /* Butonul Propuneri din legenda - ascuns pe desktop */
+        .mobile-propuneri-block { display: none; }
+
         .action-btn {
             background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(168, 85, 247, 0.1));
             border: 1px solid rgba(168, 85, 247, 0.4);
@@ -359,88 +362,20 @@
 
         @media (max-width: 768px) {
             /* ── BODY MOBIL ── */
-            body { padding: 0; padding-bottom: 24px; }
+            body { padding: 20px 0 32px; }
 
-            /* ── TOPBAR STICKY ── */
-            .mobile-topbar {
-                position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-                display: flex; align-items: center; justify-content: space-between;
-                padding: 0 16px;
-                background: rgba(6, 1, 11, 0.85);
-                backdrop-filter: blur(24px) saturate(180%);
-                -webkit-backdrop-filter: blur(24px) saturate(180%);
-                border-bottom: 1px solid rgba(168, 85, 247, 0.15);
-                transition: height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-                            padding 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-                overflow: hidden;
-                height: 72px;
-            }
-            /* Expanded state (default) */
+            /* ── TOPBAR STICKY - DEZACTIVAT ── */
+            .mobile-topbar { display: none !important; }
+
+            /* ── COLLAPSED STATES (kept for JS compat, noop) ── */
             .mobile-topbar.topbar-expanded {
                 height: 72px;
                 padding: 0 16px;
             }
-            /* Collapsed into pill */
             .mobile-topbar.topbar-collapsed {
                 height: 44px;
                 padding: 0 14px;
             }
-            .mobile-topbar-logo {
-                height: 44px; width: 44px; object-fit: contain;
-                filter: drop-shadow(0 0 10px rgba(245,186,66,0.55));
-                cursor: pointer;
-                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                            height 0.32s ease, width 0.32s ease;
-                flex-shrink: 0;
-            }
-            .mobile-topbar.topbar-collapsed .mobile-topbar-logo {
-                height: 28px; width: 28px;
-            }
-            .mobile-topbar-logo:active { transform: scale(0.88) rotate(-8deg); }
-
-            .mobile-topbar-title {
-                font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em;
-                color: #ffffff;
-                flex: 1; text-align: center; padding: 0 12px;
-                cursor: pointer; user-select: none;
-                transition: font-size 0.32s ease, opacity 0.32s ease;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            .mobile-topbar.topbar-collapsed .mobile-topbar-title {
-                font-size: 0.8rem;
-                opacity: 0.75;
-            }
-
-            /* Propuneri button — frosted glass, purple + gold glow */
-            .mobile-topbar-btn {
-                background: linear-gradient(135deg, rgba(168, 85, 247, 0.28), rgba(168, 85, 247, 0.12));
-                border: 1px solid rgba(168, 85, 247, 0.5);
-                border-top: 1px solid rgba(168, 85, 247, 0.7);
-                color: #e2c4ff;
-                padding: 7px 14px;
-                border-radius: 20px;
-                font-size: 0.72rem; font-weight: 700;
-                cursor: pointer;
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                backdrop-filter: blur(12px) saturate(1.4);
-                -webkit-backdrop-filter: blur(12px) saturate(1.4);
-                box-shadow: 0 0 12px rgba(168, 85, 247, 0.35), 0 0 20px rgba(245, 186, 66, 0.12), inset 0 1px 1px rgba(255,255,255,0.2);
-                transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
-                flex-shrink: 0;
-                white-space: nowrap;
-                outline: none;
-            }
-            .mobile-topbar-btn:active {
-                transform: scale(0.92);
-                box-shadow: 0 0 18px rgba(168, 85, 247, 0.5), 0 0 28px rgba(245, 186, 66, 0.22);
-            }
-            .mobile-topbar.topbar-collapsed .mobile-topbar-btn {
-                padding: 5px 10px;
-                font-size: 0.66rem;
-            }
-
             /* ── EASTER EGG LOGO PE MOBIL ── */
             .mobile-topbar-logo.fleeing {
                 position: fixed !important;
@@ -449,56 +384,58 @@
                 transition: left 0.3s ease-out, top 0.3s ease-out, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
             }
 
-            /* ── DESKTOP HEADER / CONTROLS ASCUNSE PE MOBIL ── */
-            header, .floating-controls { display: none !important; }
+            /* ── DESKTOP FLOATING CONTROLS ASCUNSE PE MOBIL ── */
+            .floating-controls { display: none !important; }
+
+            /* ── HEADER MOBIL - VIZIBIL, MAI MARE ── */
+            header {
+                display: flex !important;
+                margin-bottom: 24px !important;
+                margin-top: 0 !important;
+                padding: 20px 16px 0 !important;
+                gap: 14px !important;
+                flex-wrap: nowrap !important;
+                justify-content: center !important;
+                position: relative !important;
+            }
+            header h1 {
+                font-size: 2.6rem !important;
+            }
+            .header-logo {
+                width: 70px !important;
+                height: 70px !important;
+            }
 
             /* ── CONTAINER MOBIL ── */
             .container {
-                padding-top: 80px;
+                padding-top: 0;
                 width: 100%; max-width: 100%;
             }
 
-            /* ── LEGEND PANEL ASCUNS PE MOBIL ── */
-            .glass-panel:not(.month-section) { display: none !important; }
+            /* ── LEGEND PANEL MOBIL - VIZIBIL, STACKED ── */
+            .glass-panel:not(.month-section) {
+                display: block !important;
+                margin: 0 10px 16px !important;
+                padding: 16px !important;
+                border-radius: 16px !important;
+            }
+            .legend-container-inner {
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+            .legend-block h3 {
+                margin-bottom: 10px !important;
+            }
+            .legend-grid {
+                gap: 8px !important;
+            }
+            .legend-pill {
+                font-size: 0.78rem !important;
+                padding: 7px 12px !important;
+            }
 
-            /* ── FILTER STRIP ORIZONTAL ── */
-            .mobile-filter-strip {
-                display: flex;
-                gap: 7px;
-                padding: 10px 14px 12px;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-            }
-            .mobile-filter-strip::-webkit-scrollbar { display: none; }
-
-            .mf-chip {
-                display: flex; align-items: center; gap: 6px;
-                padding: 6px 12px;
-                border-radius: 20px;
-                font-size: 0.71rem; font-weight: 700;
-                white-space: nowrap;
-                scroll-snap-align: start;
-                flex-shrink: 0;
-                cursor: pointer;
-                border: 1.5px solid rgba(255,255,255,0.1);
-                background: rgba(255,255,255,0.05);
-                color: rgba(255,255,255,0.6);
-                transition: all 0.22s ease;
-                -webkit-tap-highlight-color: transparent;
-                font-family: 'Plus Jakarta Sans', sans-serif;
-            }
-            .mf-chip.active {
-                color: #fff;
-                background: rgba(255,255,255,0.12);
-                border-color: rgba(255,255,255,0.35);
-                box-shadow: 0 0 12px rgba(255,255,255,0.08);
-            }
-            .mf-chip.dimmed { opacity: 0.32; filter: grayscale(60%); }
-            .mf-chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; border: 1.5px solid rgba(255,255,255,0.8); }
-            .mf-chip-sq { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-            .mf-divider { width: 1px; background: rgba(255,255,255,0.15); margin: 0 2px; flex-shrink: 0; align-self: stretch; border-radius: 1px; }
+            /* ── FILTER STRIP - ASCUNS (folosim legenda stacked) ── */
+            .mobile-filter-strip { display: none !important; }
 
             /* ── DESKTOP MONTH SECTIONS ASCUNSE ── */
             .glass-panel.month-section { display: none !important; }
@@ -508,7 +445,7 @@
 
             /* ── ACCORDION ITEM ── */
             .mob-acc-item {
-                margin-bottom: 8px;
+                margin-bottom: 10px;
                 border-radius: 16px;
                 overflow: hidden;
                 background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)), rgba(20, 5, 30, 0.55);
@@ -571,26 +508,35 @@
                 padding: 0 12px 14px;
             }
 
-            /* ── CARDURI MOBIL ── */
-            .calendar-grid { display: flex; flex-direction: column; gap: 9px; }
+            /* ── CARDURI MOBIL - identice cu desktop ca stil ── */
+            .calendar-grid { display: flex; flex-direction: column; gap: 10px; }
 
             .event-card {
-                border-radius: 12px; padding: 13px 14px; min-height: auto;
+                border-radius: 14px; padding: 14px 16px; min-height: auto;
                 backdrop-filter: blur(14px) saturate(140%);
                 -webkit-backdrop-filter: blur(14px) saturate(140%);
-                box-shadow: none;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+                border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+                /* border-left colorat e setat prin clasele card-postare etc. */
                 transform: none !important;
-                transition: opacity 0.2s ease, filter 0.2s ease !important;
+                transition: opacity 0.2s ease, filter 0.2s ease, transform 0.15s ease !important;
             }
+            /* Restaurează border-left colorat pe mobil */
+            .event-card.card-postare { border-left: 4px solid var(--color-postare) !important; }
+            .event-card.card-reel    { border-left: 4px solid var(--color-reel) !important; }
+            .event-card.card-story   { border-left: 4px solid var(--color-story) !important; }
+            .event-card.card-mesaj   { border-left: 4px solid var(--color-mesaj) !important; }
+            .event-card.card-nespecificat { border-left: 4px solid var(--color-unknown) !important; }
+
             .event-card::after { display: none; }
-            .event-card:active:not(.dimmed-card) { opacity: 0.72; transform: scale(0.98) !important; }
+            .event-card:active:not(.dimmed-card) { opacity: 0.8; transform: scale(0.98) !important; }
             .event-card.dimmed-card { opacity: 0.14; filter: grayscale(100%); transform: none !important; }
 
-            .card-top { margin-bottom: 7px; }
-            .date-badge { font-size: 0.95rem; }
-            .event-title { font-size: 0.88rem; margin-bottom: 9px; }
-            .card-bottom { padding-top: 9px; }
-            .type-label { font-size: 0.64rem; }
+            .card-top { margin-bottom: 8px; }
+            .date-badge { font-size: 1rem; }
+            .event-title { font-size: 0.9rem; margin-bottom: 10px; }
+            .card-bottom { padding-top: 10px; }
 
             /* Luna badge pe card (apare la filtrare) */
             .card-month-badge {
@@ -601,6 +547,18 @@
                 letter-spacing: 0.04em;
                 text-transform: uppercase;
                 white-space: nowrap;
+            }
+
+            /* ── PROPUNERI BUTTON PE MOBIL ── */
+            .mobile-propuneri-block {
+                display: flex !important;
+                justify-content: center;
+                padding-top: 4px;
+            }
+            .mobile-propuneri-btn {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
             }
 
             /* ── BG LOGO MOBIL ── */
@@ -647,22 +605,12 @@
 
         /* FIX ALINIERE ȘI UMBRE CASETE PE MOBIL */
         @media (max-width: 768px) {
-            .event-card {
-                width: 100%;
-                box-shadow: none !important; 
-                transform: none !important; 
-                border: 1px solid rgba(255, 255, 255, 0.12) !important; 
-            }
-
             .event-card:hover:not(.dimmed-card) {
                 transform: none !important;
-                box-shadow: none !important;
-                border-color: rgba(255, 255, 255, 0.25) !important;
             }
 
             .event-card:active:not(.dimmed-card) {
                 transform: scale(0.98) !important; 
-                box-shadow: none !important;
             }
 
             .event-card.dimmed-card {
@@ -836,6 +784,10 @@
                 <h3>Responsabili Coordonare</h3>
                 <div class="legend-grid" id="legend-resp"></div>
             </div>
+            <!-- Propuneri button — vizibil doar pe mobil -->
+            <div class="legend-block mobile-propuneri-block">
+                <button class="action-btn mobile-propuneri-btn" onclick="openProposalModal()">Propuneri</button>
+            </div>
         </div>
     </div>
 
@@ -909,34 +861,13 @@
 
     // ── MOBILE DETECTION ──
     const IS_MOBILE = () => window.innerWidth <= 768;
-    if (IS_MOBILE()) {
-        document.getElementById('mobileTopbar').style.display = 'flex';
-    }
     window.addEventListener('resize', () => {
         const mob = IS_MOBILE();
-        document.getElementById('mobileTopbar').style.display = mob ? 'flex' : 'none';
         document.getElementById('mobile-calendar').style.display = mob ? 'block' : 'none';
         document.getElementById('calendar-root').style.display = mob ? 'none' : 'block';
     });
 
-    // ── TOPBAR SCROLL COLLAPSE ──
-    (function() {
-        const topbar = document.getElementById('mobileTopbar');
-        let lastY = 0;
-        window.addEventListener('scroll', () => {
-            if (!IS_MOBILE()) return;
-            const y = window.scrollY;
-            if (y > 60) {
-                topbar.classList.add('topbar-collapsed');
-                topbar.classList.remove('topbar-expanded');
-            } else {
-                topbar.classList.remove('topbar-collapsed');
-                topbar.classList.add('topbar-expanded');
-            }
-            lastY = y;
-        }, { passive: true });
-        topbar.classList.add('topbar-expanded');
-    })();
+    // ── TOPBAR SCROLL COLLAPSE - dezactivat (topbar ascuns pe mobil) ──
 
     // ── ACCORDION BUILDER ──
     function buildMobileAccordion(sortedGroups, tipMap, respMap) {
@@ -944,19 +875,30 @@
         if (!accordion) return;
         accordion.innerHTML = '';
 
+        const now = new Date();
+        const monthNames = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
+            'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
+        const currentMonthKey = monthNames[now.getMonth()] + ' ' + now.getFullYear();
+
+        // Găsim indexul lunii curente; dacă nu există, deschidem prima
+        let defaultOpenIdx = 0;
+        sortedGroups.forEach(([monthName], i) => {
+            if (monthName === currentMonthKey) defaultOpenIdx = i;
+        });
+
         sortedGroups.forEach(([monthName, group], i) => {
             const shortName = monthName.split(' ')[0];
-            const isFirst = i === 0;
+            const isDefault = i === defaultOpenIdx;
 
             const item = document.createElement('div');
-            item.className = 'mob-acc-item' + (isFirst ? ' open' : '');
+            item.className = 'mob-acc-item' + (isDefault ? ' open' : '');
             item.dataset.accIdx = i;
 
             // Header
             const header = document.createElement('div');
             header.className = 'mob-acc-header';
             header.setAttribute('role', 'button');
-            header.setAttribute('aria-expanded', isFirst ? 'true' : 'false');
+            header.setAttribute('aria-expanded', isDefault ? 'true' : 'false');
             header.innerHTML = `
                 <div class="mob-acc-header-left">
                     <div class="mob-acc-month-bar"></div>
@@ -1023,13 +965,28 @@
     let currentFilter = null;
     let currentPill = null;
 
+    function getCurrentMonthAccIdx() {
+        // Găsește luna curentă (sau prima deschisă) pentru a rămâne deschisă la deselect
+        const now = new Date();
+        const monthNames = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
+            'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
+        const currentMonthName = monthNames[now.getMonth()] + ' ' + now.getFullYear();
+        const items = document.querySelectorAll('.mob-acc-item');
+        let foundIdx = 0;
+        items.forEach((item, idx) => {
+            const name = item.querySelector('.mob-acc-month-name');
+            if (name && name.textContent.trim() === currentMonthName) foundIdx = idx;
+        });
+        return foundIdx;
+    }
+
     function toggleFilter(selector, pillElement) {
         const allCards = document.querySelectorAll('.event-card');
         const allPills = document.querySelectorAll('.legend-pill');
         const allMfChips = document.querySelectorAll('.mf-chip');
 
         if (currentFilter === selector) {
-            // Reset tutto
+            // DESELECT: reset tot și lasă deschisă doar luna curentă pe mobil
             allCards.forEach(card => {
                 card.classList.remove('dimmed-card');
                 const mb = card.querySelector('.card-month-badge');
@@ -1043,6 +1000,20 @@
             });
             currentFilter = null;
             currentPill = null;
+
+            // Pe mobil: închide toate, lasă deschisă luna curentă
+            if (IS_MOBILE()) {
+                const currentIdx = getCurrentMonthAccIdx();
+                document.querySelectorAll('.mob-acc-item').forEach((item, idx) => {
+                    if (idx === currentIdx) {
+                        item.classList.add('open');
+                        item.querySelector('.mob-acc-header')?.setAttribute('aria-expanded', 'true');
+                    } else {
+                        item.classList.remove('open');
+                        item.querySelector('.mob-acc-header')?.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
             return;
         }
 
@@ -1060,7 +1031,7 @@
             }
         });
 
-        // Mobile chips
+        // Mobile chips (sync cu legendă)
         allMfChips.forEach(chip => {
             const chipSel = chip.dataset.filterSel;
             if (chipSel === selector) {
@@ -1085,7 +1056,6 @@
                     const panel = card.closest('.glass-panel');
                     if (panel && panel.classList.contains('collapsed')) panel.classList.remove('collapsed');
                 }
-                // Show month badge on mobile when filtering
                 const mb = card.querySelector('.card-month-badge');
                 if (mb && IS_MOBILE()) mb.style.display = 'inline-block';
             } else {
@@ -1095,11 +1065,20 @@
             }
         });
 
-        // On mobile: open all accordion items so filtered cards are visible
+        // Pe mobil: deschide toate secțiunile, apoi scroll la primul card matching
         if (IS_MOBILE()) {
             document.querySelectorAll('.mob-acc-item').forEach(item => {
                 item.classList.add('open');
+                item.querySelector('.mob-acc-header')?.setAttribute('aria-expanded', 'true');
             });
+
+            // Scroll la primul card care se potrivește
+            setTimeout(() => {
+                const firstMatch = document.querySelector('.event-card:not(.dimmed-card)');
+                if (firstMatch) {
+                    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 120);
         }
     }
 
@@ -1593,21 +1572,21 @@
     let fleeCount = 0;
     let isFleeing = false;
     
-    // Desktop elements
+    // Desktop & mobile share the same header elements now
     const logoImg = document.getElementById('easterEggLogo');
     const mainTitle = document.getElementById('easterEggTitle');
     const headerEl = document.querySelector('header');
 
-    // Mobile elements
-    const mobileLogoEl = document.getElementById('mobileEasterLogo');
-    const mobileTitleEl = document.getElementById('mobileEasterTitle');
+    // Mobile easter egg elements (topbar hidden, so map to same header elements)
+    const mobileLogoEl = logoImg;   // same element on mobile
+    const mobileTitleEl = mainTitle; // same element on mobile
 
     // ── HELPER: get active logo element ──
     function getActiveLogo() {
-        return IS_MOBILE() ? mobileLogoEl : logoImg;
+        return logoImg;
     }
     function getActiveContainer() {
-        return IS_MOBILE() ? document.getElementById('mobileTopbar') : headerEl;
+        return headerEl;
     }
 
     // Runaway Logo — works on both mobile topbar logo and desktop logo
@@ -1632,7 +1611,7 @@
         });
     }
     attachLogoEasterEgg(logoImg);
-    attachLogoEasterEgg(mobileLogoEl);
+    // mobileLogoEl is same as logoImg now, no need to attach twice
 
     function hoverFlee(el) {
         if (!isFleeing) return;
@@ -1659,13 +1638,8 @@
         el.style.top = '';
         el.style.transform = '';
 
-        // Return to correct container
-        const container = IS_MOBILE() ? document.getElementById('mobileTopbar') : headerEl;
-        if (IS_MOBILE()) {
-            container.insertBefore(el, container.firstChild);
-        } else {
-            container.insertBefore(el, mainTitle);
-        }
+        // Return to header container always
+        headerEl.insertBefore(el, mainTitle);
         
         // Confetti 🎉
         setTimeout(() => {
@@ -1690,7 +1664,7 @@
         });
     }
     attachTitleEasterEgg(mainTitle);
-    attachTitleEasterEgg(mobileTitleEl);
+    // mobileTitleEl is same as mainTitle now, no need to attach twice
 
     function openProposalModal() { document.getElementById('proposalModal').classList.add('active'); }
     function triggerTaskModal(cardElement) {
